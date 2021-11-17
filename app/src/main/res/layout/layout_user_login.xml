@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UserLogin"
+    android:background="#D5D5D5">
+
+    <RelativeLayout
+        android:background="@drawable/rounded_corners_layout"
+        android:layout_margin="5dp"
+        android:padding="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="300dp"
+        android:layout_height="400dp">
+
+        <TextView android:id="@+id/txt1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Bienvenido!"
+            android:gravity="center"
+            android:textSize="25sp"
+            android:textStyle="italic"
+            android:textColor="#000000"
+            android:paddingBottom="30dp"/>
+        <TextView android:id="@+id/txt2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Iniciar Sesión"
+            android:layout_below="@id/txt1"
+            android:paddingBottom="20dp"
+            android:textColor="#000000"
+            android:textSize="15sp"
+            />
+        <EditText android:id="@+id/txtUSR"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:hint="Usuario"
+            android:layout_below="@id/txt2"
+            android:paddingBottom="20dp"/>
+        <EditText android:id="@+id/txtPSWRD"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:hint="Contraseña"
+            android:layout_below="@id/txtUSR"
+            android:paddingBottom="20dp"/>
+
+        <Button android:id="@+id/btnIniciarSesion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Iniciar Sesión"
+            android:layout_below="@id/txtPSWRD"
+            android:gravity="center"
+            android:backgroundTint="#E53935"/>
+
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MenuPrincipal"
+    android:background="@drawable/gradient_blue_yellow"
+    android:padding="10dp">
+
+    <ImageView
+        android:id="@+id/ImgLogo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/aqlogosmash25"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btnPVP"/>
+
+    <Button
+        android:id="@+id/btnPVP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Jugador vs Jugador"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ImgLogo"
+        app:layout_constraintBottom_toTopOf="@id/btnPVC"/>
+    <Button
+        android:id="@+id/btnPVC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Jugador vs CPU"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnPVP"
+        app:layout_constraintBottom_toTopOf="@id/txt3"/>
+
+    <TextView android:id="@+id/txt3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Selecciona una opción para comenzar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnPVC"
+        android:gravity="center"
+        android:textSize="20sp"/>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

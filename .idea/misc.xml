@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/super/Documents/ProjectTest/app/src/main/res/drawable/animacion.xml" value="0.22604166666666667" />
+        <entry key="..\:/Users/super/Documents/ProjectTest/app/src/main/res/drawable/border.xml" value="0.6" />
+        <entry key="..\:/Users/super/Documents/ProjectTest/app/src/main/res/drawable/colorbackground.xml" value="0.2" />
+        <entry key="..\:/Users/super/Documents/ProjectTest/app/src/main/res/drawable/gradient_blue_red.xml" value="0.22604166666666667" />
+        <entry key="..\:/Users/super/Documents/ProjectTest/app/src/main/res/drawable/rounded_corners_layout.xml" value="0.22604166666666667" />
+        <entry key="..\:/Users/super/Documents/ProjectTest/app/src/main/res/drawable/splashscreen.xml" value="0.22604166666666667" />
+        <entry key="..\:/Users/super/Documents/ProjectTest/app/src/main/res/layout/activity_main.xml" value="0.16381578947368422" />
+        <entry key="..\:/Users/super/Documents/ProjectTest/app/src/main/res/layout/layout_char_select.xml" value="0.264" />
+        <entry key="..\:/Users/super/Documents/ProjectTest/app/src/main/res/layout/layout_menu_principal.xml" value="0.2" />
+        <entry key="..\:/Users/super/Documents/ProjectTest/app/src/main/res/layout/layout_tablero.xml" value="0.264" />
+        <entry key="..\:/Users/super/Documents/ProjectTest/app/src/main/res/layout/layout_user_login.xml" value="0.4" />
+        <entry key="..\:/Users/super/Documents/ProjectTest/app/src/main/res/layout/recview_content.xml" value="0.536" />
+        <entry key="..\:/Users/super/Documents/ProjectTest/app/src/main/res/layout/rounded_corners.xml" value="0.18115942028985507" />
+        <entry key="app/src/main/res/drawable/ic_launcher_round.xml" value="0.12083333333333333" />
+        <entry key="app/src/main/res/drawable/splashscreen.xml" value="0.13" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.14175724637681159" />
+        <entry key="app/src/main/res/layout/activity_menu_principal.xml" value="0.1046875" />
+        <entry key="app/src/main/res/layout/layout_casillas.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/layout_tablero.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/tablero_layout.xml" value="0.17" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.12083333333333333" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
