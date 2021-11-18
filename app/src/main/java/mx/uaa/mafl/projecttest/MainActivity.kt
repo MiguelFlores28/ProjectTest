@@ -25,4 +25,5 @@ class MainActivity : AppCompatActivity() {
 * Crear la lógica del juego contra el CPU
 *   Agregarle que el también tenga un personaje
 *   Que evalúe las deciciones del jugador
-*   Que evalúe sus propias deciciones para saber que personaje tiene*/
+*   Que evalúe sus propias deciciones para saber que personaje tiene
+*  Mi Github Token: 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*/

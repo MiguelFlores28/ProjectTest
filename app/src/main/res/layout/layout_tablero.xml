@@ -22,134 +22,182 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
 
-            <ImageView android:id="@+id/row1.1"
+            <ImageButton android:id="@+id/row1.1"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:src="@drawable/smashball"/>
+                android:background="@drawable/smashball"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"/>
 
-            <ImageView android:id="@+id/row1.2"
+            <ImageButton android:id="@+id/row1.2"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:src="@drawable/smashball" />
+                android:background="@drawable/smashball"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"/>
 
-            <ImageView android:id="@+id/row1.3"
+            <ImageButton android:id="@+id/row1.3"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:src="@drawable/smashball" />
+                android:background="@drawable/smashball"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"/>
 
-            <ImageView android:id="@+id/row1.4"
+            <ImageButton android:id="@+id/row1.4"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:src="@drawable/smashball"
+                android:background="@drawable/smashball"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
                 />
 
-            <ImageView android:id="@+id/row2.1"
+            <ImageButton android:id="@+id/row2.1"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:src="@drawable/smashball" />
+                android:background="@drawable/smashball"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"/>
 
-            <ImageView android:id="@+id/row2.2"
+            <ImageButton android:id="@+id/row2.2"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:src="@drawable/smashball" />
+                android:background="@drawable/smashball"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"/>
 
-            <ImageView android:id="@+id/row2.3"
+            <ImageButton android:id="@+id/row2.3"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:src="@drawable/smashball"
+                android:background="@drawable/smashball"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
                 />
 
-            <ImageView android:id="@+id/row2.4"
+            <ImageButton android:id="@+id/row2.4"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:src="@drawable/smashball" />
+                android:background="@drawable/smashball"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"/>
 
-            <ImageView
+            <ImageButton
                 android:id="@+id/row3.1"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:src="@drawable/smashball" />
+                android:background="@drawable/smashball"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"/>
 
-            <ImageView android:id="@+id/row3.2"
+            <ImageButton android:id="@+id/row3.2"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:src="@drawable/smashball"
+                android:background="@drawable/smashball"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
                 />
 
-            <ImageView android:id="@+id/row3.3"
+            <ImageButton android:id="@+id/row3.3"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:src="@drawable/smashball" />
+                android:background="@drawable/smashball"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"/>
 
-            <ImageView android:id="@+id/row3.4"
+            <ImageButton android:id="@+id/row3.4"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:src="@drawable/smashball" />
+                android:background="@drawable/smashball"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"/>
 
 
-            <ImageView android:id="@+id/row4.1"
+            <ImageButton android:id="@+id/row4.1"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:src="@drawable/smashball"
+                android:background="@drawable/smashball"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
                 />
 
-            <ImageView android:id="@+id/row4.2"
+            <ImageButton android:id="@+id/row4.2"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:src="@drawable/smashball" />
+                android:background="@drawable/smashball"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"/>
 
-            <ImageView android:id="@+id/row4.3"
+            <ImageButton android:id="@+id/row4.3"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:src="@drawable/smashball" />
+                android:background="@drawable/smashball"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"/>
 
-            <ImageView android:id="@+id/row4.4"
+            <ImageButton android:id="@+id/row4.4"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:src="@drawable/smashball"
+                android:background="@drawable/smashball"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
                 />
 
-            <ImageView android:id="@+id/row5.1"
+            <ImageButton android:id="@+id/row5.1"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:src="@drawable/smashball" />
+                android:background="@drawable/smashball"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"/>
 
-            <ImageView android:id="@+id/row5.2"
+            <ImageButton android:id="@+id/row5.2"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:src="@drawable/smashball" />
+                android:background="@drawable/smashball"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"/>
 
-            <ImageView android:id="@+id/row5.3"
+            <ImageButton android:id="@+id/row5.3"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:src="@drawable/smashball"
+                android:background="@drawable/smashball"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
                 />
 
-            <ImageView android:id="@+id/row5.4"
+            <ImageButton android:id="@+id/row5.4"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:src="@drawable/smashball" />
+                android:background="@drawable/smashball"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"/>
 
-            <ImageView android:id="@+id/row6.1"
+            <ImageButton android:id="@+id/row6.1"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:src="@drawable/smashball" />
+                android:background="@drawable/smashball"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"/>
 
-            <ImageView
+            <ImageButton
                 android:id="@+id/row6.2"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:src="@drawable/smashball" />
+                android:background="@drawable/smashball"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"/>
 
-            <ImageView android:id="@+id/row6.3"
+            <ImageButton android:id="@+id/row6.3"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:src="@drawable/smashball" />
+                android:background="@drawable/smashball"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"/>
 
-            <ImageView android:id="@+id/row6.4"
+            <ImageButton android:id="@+id/row6.4"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:src="@drawable/smashball" />
+                android:background="@drawable/smashball"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"/>
 
     </GridLayout>
 
@@ -172,7 +220,7 @@
         android:layout_height="wrap_content"
         android:text="X"
         android:textSize="60sp"
-        android:background="#DDDDDD"
+        android:background="#3949AB"
         app:layout_constraintBottom_toTopOf="@+id/recViewMsj"
         app:layout_constraintEnd_toStartOf="@id/tbl_layout"
         app:layout_constraintStart_toStartOf="parent"
