@@ -12,6 +12,7 @@ class MenuPrincipal : AppCompatActivity() {
     private var backPressedTime = 0L
     private lateinit var btnJVJ : Button
     private lateinit var btnJVC : Button
+    private lateinit var btnGuia : Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,10 +20,15 @@ class MenuPrincipal : AppCompatActivity() {
 
         btnJVJ = findViewById(R.id.btnPVP)
         btnJVC = findViewById(R.id.btnPVC)
+        btnGuia = findViewById(R.id.btnGuia)
 
         btnJVC.setOnClickListener() {
             startActivity(Intent(this, CharSelect::class.java))
         }
+
+       btnGuia.setOnClickListener() {
+           startActivity(Intent(this, GuiaJuego::class.java))
+       }
     }
 
     override fun onBackPressed() {

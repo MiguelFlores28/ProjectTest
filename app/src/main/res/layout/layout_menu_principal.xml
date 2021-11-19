@@ -8,6 +8,20 @@
     android:background="@drawable/gradient_blue_yellow"
     android:padding="10dp">
 
+    <Button android:id="@+id/btnGuia"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#00000000"
+        android:text="@string/lmp_btn01"
+        android:textSize="25sp"
+        android:textColor="#FF0000"
+        app:icon="@drawable/guiaimg"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        style="?android:attr/borderlessButtonStyle"
+        />
+
     <ImageView
         android:id="@+id/ImgLogo"
         android:layout_width="match_parent"
@@ -15,38 +29,49 @@
         android:src="@drawable/aqlogosmash25"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnGuia"
         app:layout_constraintBottom_toTopOf="@id/btnPVP"/>
 
     <Button
         android:id="@+id/btnPVP"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Jugador vs Jugador"
+        android:text="@string/lmp_btn02"
+        android:textSize="25sp"
+        android:textColor="#D5334B"
+        android:backgroundTint="#00000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ImgLogo"
-        app:layout_constraintBottom_toTopOf="@id/btnPVC"/>
+        app:layout_constraintBottom_toTopOf="@id/btnPVC"
+        style="?android:attr/borderlessButtonStyle"
+        />
     <Button
         android:id="@+id/btnPVC"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Jugador vs CPU"
+        android:text="@string/lmp_btn03"
+        android:textSize="25sp"
+        android:backgroundTint="#00000000"
+        android:textColor="#FFB300"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btnPVP"
-        app:layout_constraintBottom_toTopOf="@id/txt3"/>
+        app:layout_constraintBottom_toTopOf="@id/txt3"
+        style="?android:attr/borderlessButtonStyle"/>
 
-    <TextView android:id="@+id/txt3"
+    <TextView
+        android:id="@+id/txt3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Selecciona una opción para comenzar"
+        android:gravity="center"
+        android:text="@string/lmp_btn04"
+        android:textColor="#ffffff"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnPVC"
-        android:gravity="center"
-        android:textSize="20sp"/>
+        app:layout_constraintTop_toBottomOf="@id/btnPVC" />
 
 
 

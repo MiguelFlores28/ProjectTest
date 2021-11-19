@@ -10,9 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProjectTest">
         <activity
+            android:name=".GuiaJuego"
+            android:exported="false" />
+        <activity
             android:name=".CharSelect"
             android:exported="false"
-            android:noHistory="true"/>
+            android:noHistory="true" />
         <activity
             android:name=".UserLogin"
             android:exported="false"
@@ -20,11 +23,11 @@
         <activity
             android:name=".MenuPrincipal"
             android:exported="false"
-            android:noHistory="true"/>
+            android:noHistory="true" />
         <activity
             android:name=".Tablero"
             android:exported="false"
-            android:noHistory="true"/>
+            android:noHistory="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true"

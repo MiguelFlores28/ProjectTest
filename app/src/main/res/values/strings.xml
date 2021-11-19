@@ -1,3 +1,45 @@
 <resources>
+    <!--Glosario:
+    str: String
+    btn: Botón
+    hnt: Hint
+    -->
     <string name="app_name">ProjectTest</string>
+
+    <!--Layout_char_select-->
+    <string name="lcs_str01">Tu personaje es: </string>
+    <string name="lcs_str02">Placeholder</string>
+    <string name="lcs_btn01">¡Entendido!</string>
+
+    <!--Layout_guia_juego-->
+    <string name="lgj_str01">Bienvenido al juego de Adivina quién: Super Smash Bros Edition</string>
+    <string name="lgj_str02">¿Cómo jugar?</string>
+    <string name="lgj_str03">Se te otorgará un personaje de manera aleatoria a cada jugador y por medio de preguntas se irán descartando personajes hasta descubrir el personaje que tiene tu oponente.</string>
+    <string name="lgj_str04">¿Cómo ganar?</string>
+    <string name="lgj_str05">Gana quien por medio de preguntas logre adivinar el personaje del jugador contrario primero, si te equivocas en adivinar, puedes perder de igual manera. Para conseguir la Victoria Absoluta tendrás que ganar 5 juegos en contra del jugador contrario.</string>
+    <string name="lgj_str06">Los personajes de este adivina quien vienen de Super Smash Bros (SSB), un juego de peleas con personajes de Nintendo por lo que algunas de las preguntas que puedes realizar al momento de jugar son:</string>
+    <string name="lgj_str07">Tipos de peleador</string>
+    <string name="lgj_str08">Peleador cuerpo a cuerpo</string>
+    <string name="lgj_str09">Peleador que usa proyectiles</string>
+    <string name="lgj_str10">Peleador que usa Espada o algún otro tipo de arma</string>
+    <string name="lgj_str11">Si es héroe o villano (Representado con un borde azul para heroes o un borde rojo para villanos) \n O la franquicia de origen (Representada por su logotipo): \nSuper Mario Bros, Metroid, The Legend of Zelda, Kirby, Pokemon, Star Fox, Donkey Kong, Fire Emblem </string>
+    <string name="lgj_str12">Créditos: \n Flores López Miguel Angel - ID:AL252814 \n Maldonado Rosales Daniel - ID:AL253932 \n Padilla Villalobos Gilberto - ID:AL252785</string>
+
+    <!--Layout_menu_principal-->
+    <string name="lmp_btn01">Guia rápida de juego</string>
+    <string name="lmp_btn02">Jugador vs Jugador</string>
+    <string name="lmp_btn03">Jugador vs CPU</string>
+    <string name="lmp_btn04">Selecciona una opción para comenzar</string>
+
+    <!--Layout_tablero-->
+    <string name="lt_str01">Victorias</string>
+    <string name="lt_str02">X</string>
+    <string name="lt_btn01">Enviar</string>
+
+    <!--Layout_user_login-->
+    <string name="lul_str01">¡Bienvenido!</string>
+    <string name="lul_str02">Iniciar Sesión</string>
+    <string name="lul_hnt01">Usuario</string>
+    <string name="lul_hnt02">Contraseña</string>
+    <string name="lul_btn01">Iniciar Sesión</string>
 </resources>
