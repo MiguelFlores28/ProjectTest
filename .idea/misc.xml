@@ -3,6 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/danif/AndroidStudioProjects/ProjectTest/app/src/main/res/layout/activity_game.xml" value="0.1" />
+        <entry key="..\:/Users/danif/AndroidStudioProjects/ProjectTest/app/src/main/res/layout/activity_home.xml" value="0.13125" />
+        <entry key="..\:/Users/danif/AndroidStudioProjects/ProjectTest/app/src/main/res/layout/layout_tablero.xml" value="0.13125" />
+        <entry key="..\:/Users/danif/AndroidStudioProjects/ProjectTest/app/src/main/res/layout/layout_user_login.xml" value="0.264" />
         <entry key="..\:/Users/gilbe/AndroidStudioProjects/ProjectTest/app/src/main/res/layout/activity_main.xml" value="0.13020833333333334" />
         <entry key="..\:/Users/gilbe/AndroidStudioProjects/ProjectTest/app/src/main/res/layout/layout_char_select.xml" value="0.13020833333333334" />
         <entry key="..\:/Users/gilbe/AndroidStudioProjects/ProjectTest/app/src/main/res/layout/layout_menu_principal.xml" value="0.13020833333333334" />

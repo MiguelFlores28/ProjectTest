@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.widget.Button
 import android.widget.Toast
 
@@ -20,7 +21,6 @@ class MenuPrincipal : AppCompatActivity() {
     private lateinit var btnJVJ : Button
     private lateinit var btnJVC : Button
     private lateinit var btnGuia : Button
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.layout_menu_principal)
@@ -31,16 +31,20 @@ class MenuPrincipal : AppCompatActivity() {
         btnGuia = findViewById(R.id.btnGuia)
 
         //A la actividad del juego contra máquina
-        btnJVC.setOnClickListener() {
+        btnJVC.setOnClickListener {
             startActivity(Intent(this, CharSelect::class.java))
         }
 
         //A la actividad de guía
-       btnGuia.setOnClickListener() {
+       btnGuia.setOnClickListener {
            setContentView(R.layout.layout_guia_juego)
            startActivity(Intent(this, GuiaJuego::class.java))
        }
 
+        btnJVJ.setOnClickListener{
+            setContentView(R.layout.layout_guia_juego)
+            startActivity(Intent(this, HomeActivity::class.java))
+        }
         //Agregar funcionalidad al botón de jugador contra jugador
     }
 
