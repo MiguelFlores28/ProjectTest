@@ -5,7 +5,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
+/*Adaptador para el recyclerview que contiente los mensajes predeterminados de juego*/
+
 class RecViewAdapter: RecyclerView.Adapter<RecViewAdapter.myViewHolder>() {
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): myViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.recview_content, parent, false)
         return myViewHolder(view)

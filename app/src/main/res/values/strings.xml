@@ -22,7 +22,7 @@
     <string name="lgj_str08">Peleador cuerpo a cuerpo</string>
     <string name="lgj_str09">Peleador que usa proyectiles</string>
     <string name="lgj_str10">Peleador que usa Espada o algún otro tipo de arma</string>
-    <string name="lgj_str11">Si es héroe o villano (Representado con un borde azul para heroes o un borde rojo para villanos) \n O la franquicia de origen (Representada por su logotipo): \nSuper Mario Bros, Metroid, The Legend of Zelda, Kirby, Pokemon, Star Fox, Donkey Kong, Fire Emblem </string>
+    <string name="lgj_str11">Si es héroe o villano (Representado con un borde azul para heroes o un borde rojo para villanos) \n\n O la franquicia de origen (Representada por su logotipo): \nSuper Mario Bros, Metroid, The Legend of Zelda, Kirby, Pokemon, Star Fox, Donkey Kong, Fire Emblem </string>
     <string name="lgj_str12">Créditos: \n Flores López Miguel Angel - ID:AL252814 \n Maldonado Rosales Daniel - ID:AL253932 \n Padilla Villalobos Gilberto - ID:AL252785</string>
 
     <!--Layout_menu_principal-->

@@ -6,6 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".GuiaJuego">
 
+    <!--Diseño de la pestaña de guía de juego-->
+    <!--Uso de una vista ScrollView  para poder hacer scroll al contenido
+    dentro de LienarLayout-->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -14,12 +17,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         >
+
+        <!--Contenedor de los textos e imagenes-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:padding="10dp"
             >
+            <!--Titulo-->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -30,11 +36,14 @@
                 android:text="@string/lgj_str01"
                 />
 
+            <!--Imagen/es-->
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:src="@drawable/aqlogosmash25"
                 />
+
+            <!--Titulo-->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -42,10 +51,10 @@
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 android:textAlignment="center"
-
                 android:text="@string/lgj_str02"
                 />
 
+            <!--Texto-->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -53,6 +62,8 @@
                 android:textColor="@color/black"
                 android:text="@string/lgj_str03"
                 />
+
+            <!--Titulo-->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -63,6 +74,8 @@
                 android:textAlignment="center"
 
                 />
+
+            <!--Texto-->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -71,6 +84,7 @@
                 android:text="@string/lgj_str05"
                 />
 
+            <!--Imagen/es-->
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
@@ -85,6 +99,8 @@
                 android:layout_marginBottom="20dp"
                 android:text="@string/lgj_str06"
                 />
+
+            <!--Titulo-->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -94,8 +110,9 @@
                 android:textStyle="bold"
                 android:textAlignment="center"
                 android:layout_marginBottom="15dp"
-
                 />
+
+            <!--Titulo-->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -105,6 +122,8 @@
                 android:layout_marginBottom="10dp"
                 android:text="@string/lgj_str08"
                 />
+
+            <!--Imagen/es-->
             <GridLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -158,6 +177,8 @@
                     android:layout_height="60dp"
                     android:src="@drawable/wolf"/>
             </GridLayout>
+
+            <!--Titulo-->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -167,6 +188,8 @@
                 android:layout_marginBottom="10dp"
                 android:text="@string/lgj_str09"
                 />
+
+            <!--Imagen/es-->
             <GridLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -204,6 +227,8 @@
                     android:src="@drawable/falco"/>
 
             </GridLayout>
+
+            <!--Titulo-->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -213,6 +238,8 @@
                 android:layout_marginBottom="10dp"
                 android:text="@string/lgj_str10"
                 />
+
+            <!--Imagen/es-->
             <GridLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -246,6 +273,8 @@
                     android:src="@drawable/hyrulelink"/>
 
             </GridLayout>
+
+            <!--Texto-->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -253,6 +282,8 @@
                 android:textColor="@color/black"
                 android:textSize="15sp"
                 android:layout_marginBottom="10dp"/>
+
+            <!--Imagen/es-->
             <GridLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -294,6 +325,8 @@
                     android:src="@drawable/fesymbol"/>
 
             </GridLayout>
+
+            <!--Creditos-->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -303,6 +336,7 @@
                 android:textAlignment="center"
                 android:layout_marginTop="20dp"/>
 
+            <!--Botón que nos regresa al inicio del menú-->
             <Button
                 android:id="@+id/btnRegresoInicio"
                 android:layout_width="match_parent"

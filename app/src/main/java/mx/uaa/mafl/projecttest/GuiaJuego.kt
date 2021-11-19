@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 
+/*Código que nos muestra la guiía del juego*/
+
 class GuiaJuego : AppCompatActivity() {
 
     private lateinit var  btn : Button
@@ -13,8 +15,12 @@ class GuiaJuego : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.layout_guia_juego)
 
+        /*Botón para regresar al menú principal*/
         btn = findViewById(R.id.btnRegresoInicio)
 
-        startActivity(Intent(this, MenuPrincipal::class.java))
+        btn.setOnClickListener(){
+            setContentView(R.layout.layout_menu_principal)
+            startActivity(Intent(this, MenuPrincipal::class.java))
+        }
     }
 }

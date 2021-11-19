@@ -11,6 +11,7 @@ import kotlin.math.log
 
 class UserLogin : AppCompatActivity() {
 
+    //Definición de variables y recursos
     private lateinit var txtUsuario: EditText
     private lateinit var txtPassword: EditText
     private lateinit var btnIniciar: Button
@@ -19,6 +20,7 @@ class UserLogin : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.layout_user_login)
 
+        //Definición de variables y recursos
         txtUsuario = findViewById(R.id.txtUSR)
         txtPassword = findViewById(R.id.txtPSWRD)
         btnIniciar = findViewById(R.id.btnIniciarSesion)
@@ -27,18 +29,14 @@ class UserLogin : AppCompatActivity() {
         var password: String = "0"
         var flag: Int = 0
 
+        //Botón para inicio de sesión
             btnIniciar.setOnClickListener {
                 usuario = txtUsuario.getText().toString()
                 password = txtPassword.getText().toString()
 
-                if(usuario=="mike" && password=="pass"){
-                    startActivity(Intent(this, MenuPrincipal::class.java))
-                }
+                if(usuario=="mike" && password=="pass"){ startActivity(Intent(this, MenuPrincipal::class.java)) }
                 else{
-                    val msj = Toast.makeText(
-                        this,
-                        "Usuario y/o contraseña incorrectos",
-                        Toast.LENGTH_LONG).show()
+                    val msj = Toast.makeText(this, "Usuario y/o contraseña incorrectos", Toast.LENGTH_LONG).show()
                 }
             }
     }

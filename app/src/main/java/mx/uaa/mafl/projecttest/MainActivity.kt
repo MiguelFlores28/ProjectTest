@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.content.Intent
 
+/*Código de la actividad pricipal: Se dedica a cargar recursos como la plash screen y la actividad de login*/
+
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         Thread.sleep(2000)
@@ -15,10 +17,6 @@ class MainActivity : AppCompatActivity() {
 }
 
 /*Por hacer
-* Modificar la pantalla de menú (Botones y agregar botón de instructivo)
-*
-* Buscar el método para agregar las imágenes al tablero de forma aleatoria
-*
 * crear DataClass para mostrar características de personajes
 *   Parece ser que se requerirá una tabla extra en la BD para almaacenar esto
 *
@@ -26,4 +24,4 @@ class MainActivity : AppCompatActivity() {
 *   Agregarle que el también tenga un personaje
 *   Que evalúe las deciciones del jugador
 *   Que evalúe sus propias deciciones para saber que personaje tiene
-*  Mi Github Token: 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*/
+*/

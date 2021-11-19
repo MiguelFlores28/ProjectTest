@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 class Tablero : AppCompatActivity() {
 
+    //Definición de variables y recursos
     private lateinit var imgPersonajeActual: ImageView
     private lateinit var imgRow11 : ImageButton
     private lateinit var imgRow12 : ImageButton
@@ -44,16 +45,20 @@ class Tablero : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.layout_tablero)
 
+        //Definición de variables y recursos, recuperación del personaje desde la actividad CharSelect
         var randNum = (1..24).random()
         var personajeNumber:Int = ((intent.getStringExtra("Personaje")).toString()).toInt()
         var numTableroRand = (1..4).random()
 
         imgPersonajeActual = findViewById(R.id.imgChrctrGame)
+
+        //Para el recyclerView
         vistaMensajes = findViewById(R.id.recViewMsj)
         adapter = RecViewAdapter()
         vistaMensajes.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         vistaMensajes.adapter = adapter
 
+        //Definición de variables y recursos
         imgRow11 = findViewById(R.id.row1_1)
         imgRow12 = findViewById(R.id.row1_2)
         imgRow13 = findViewById(R.id.row1_3)
@@ -82,6 +87,7 @@ class Tablero : AppCompatActivity() {
         imgRow63 = findViewById(R.id.row6_3)
         imgRow64 = findViewById(R.id.row6_4)
 
+        /*Se genera un número aleatorio el cual será el que nos proporcionará un personaje al azar*/
         when (personajeNumber){
             1 ->{ imgPersonajeActual.setImageResource(R.drawable.mario)}
             2 ->{ imgPersonajeActual.setImageResource(R.drawable.bowser)}
@@ -112,10 +118,43 @@ class Tablero : AppCompatActivity() {
             24 ->{ imgPersonajeActual.setImageResource(R.drawable.wolf)}
 
         }
+
+        //Llamada a la función de generar tablero, la cual nos generará un tablero de forma aleatoria
         generarTablero(numTableroRand)
-        
+
+        //Código para que al ser presionadas, las casillas "bajen" y cambien por el reverso de la "carta"
+        imgRow11.setOnClickListener(){Thread.sleep(500); imgRow11.setImageResource(R.drawable.smashball)}
+        imgRow12.setOnClickListener(){Thread.sleep(500); imgRow12.setImageResource(R.drawable.smashball)}
+        imgRow13.setOnClickListener(){Thread.sleep(500); imgRow13.setImageResource(R.drawable.smashball)}
+        imgRow14.setOnClickListener(){Thread.sleep(500); imgRow14.setImageResource(R.drawable.smashball)}
+        imgRow21.setOnClickListener(){Thread.sleep(500); imgRow21.setImageResource(R.drawable.smashball)}
+        imgRow22.setOnClickListener(){Thread.sleep(500); imgRow22.setImageResource(R.drawable.smashball)}
+
+        imgRow23.setOnClickListener(){Thread.sleep(500); imgRow23.setImageResource(R.drawable.smashball)}
+        imgRow24.setOnClickListener(){Thread.sleep(500); imgRow24.setImageResource(R.drawable.smashball)}
+        imgRow31.setOnClickListener(){Thread.sleep(500); imgRow31.setImageResource(R.drawable.smashball)}
+        imgRow32.setOnClickListener(){Thread.sleep(500); imgRow32.setImageResource(R.drawable.smashball)}
+        imgRow33.setOnClickListener(){Thread.sleep(500); imgRow33.setImageResource(R.drawable.smashball)}
+        imgRow34.setOnClickListener(){Thread.sleep(500); imgRow34.setImageResource(R.drawable.smashball)}
+
+        imgRow41.setOnClickListener(){Thread.sleep(500); imgRow41.setImageResource(R.drawable.smashball)}
+        imgRow42.setOnClickListener(){Thread.sleep(500); imgRow42.setImageResource(R.drawable.smashball)}
+        imgRow43.setOnClickListener(){Thread.sleep(500); imgRow43.setImageResource(R.drawable.smashball)}
+        imgRow44.setOnClickListener(){Thread.sleep(500); imgRow44.setImageResource(R.drawable.smashball)}
+        imgRow51.setOnClickListener(){Thread.sleep(500); imgRow51.setImageResource(R.drawable.smashball)}
+        imgRow52.setOnClickListener(){Thread.sleep(500); imgRow52.setImageResource(R.drawable.smashball)}
+
+        imgRow53.setOnClickListener(){Thread.sleep(500); imgRow53.setImageResource(R.drawable.smashball)}
+        imgRow54.setOnClickListener(){Thread.sleep(500); imgRow54.setImageResource(R.drawable.smashball)}
+        imgRow61.setOnClickListener(){Thread.sleep(500); imgRow61.setImageResource(R.drawable.smashball)}
+        imgRow62.setOnClickListener(){Thread.sleep(500); imgRow62.setImageResource(R.drawable.smashball)}
+        imgRow63.setOnClickListener(){Thread.sleep(500); imgRow63.setImageResource(R.drawable.smashball)}
+        imgRow64.setOnClickListener(){Thread.sleep(500); imgRow64.setImageResource(R.drawable.smashball)}
+
     }
 
+    /*Se generaron tableros predefinidos que serán cargados de manera aleatoria de acuerdo al número
+    * aleatorio que se haya mandado como parámetro a la función*/
     fun generarTablero(numeroTablero: Int){
         when (numeroTablero){
             1 ->{

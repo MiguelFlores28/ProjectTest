@@ -12,8 +12,11 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources
 
+/*Código que hace la selección aleatoria de personaje*/
+
 class CharSelect : AppCompatActivity() {
 
+    //Definición de recursos y variables
     private var backPressedTime = 0L
     var CharNmbr : Int = 0
     private lateinit var imgchar : ImageView
@@ -24,6 +27,7 @@ class CharSelect : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.layout_char_select)
 
+        /*Definición de recursos y variables*/
         imgchar = findViewById(R.id.imgChrctrSelect)
         txtChar = findViewById(R.id.chrctrSelectTxt)
         btnSiguiente = findViewById(R.id.btnSelCharStart)
@@ -36,6 +40,7 @@ class CharSelect : AppCompatActivity() {
             "Kirby","Rey Dedede","MetaKnight", "Lucina","Roy","Ike",
             "Link","Zelda","Ganondorf","Fox","Falco","Wolf")
 
+        /*Se genera un número aleatorio el cual será el que nos proporcionará un personaje al azar*/
         when (CharNmbr){
             1 ->{ imgchar.setImageResource(R.drawable.mario); txtChar.setText(names[0])}
             2 ->{ imgchar.setImageResource(R.drawable.bowser); txtChar.setText(names[1])}
@@ -71,16 +76,12 @@ class CharSelect : AppCompatActivity() {
             startActivity(Intent(this, Tablero::class.java).putExtra("Personaje", CharNmbr.toString()))
         }
 
-
-
     }
+
+    /*Botón atrás, se ocupan dos clics para salir*/
     override fun onBackPressed() {
-        if(backPressedTime + 2000 > System.currentTimeMillis()){
-            super.onBackPressed()
-        }
-        else{
-            Toast.makeText(this, "Presiona atrás otra vez para salir", Toast.LENGTH_LONG).show()
-        }
+        if(backPressedTime + 2000 > System.currentTimeMillis()){ super.onBackPressed() }
+        else{ Toast.makeText(this, "Presiona atrás otra vez para salir", Toast.LENGTH_LONG).show() }
         backPressedTime = System.currentTimeMillis()
     }
 }
