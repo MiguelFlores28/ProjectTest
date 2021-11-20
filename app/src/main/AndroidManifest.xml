@@ -29,6 +29,10 @@
             android:exported="false"
             android:noHistory="true" />
         <activity
+            android:name=".TableroOnline"
+            android:exported="false"
+            android:noHistory="true" />
+        <activity
             android:name=".HomeActivity"
             android:exported="false"
             android:noHistory="true" />

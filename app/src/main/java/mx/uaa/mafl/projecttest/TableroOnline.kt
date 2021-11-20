@@ -3,11 +3,18 @@ package mx.uaa.mafl.projecttest
 import android.media.Image
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 
-class Tablero : AppCompatActivity() {
+class TableroOnline : AppCompatActivity() {
 
     //Definición de variables y recursos
     private lateinit var botonpreg1 : Button
@@ -43,13 +50,23 @@ class Tablero : AppCompatActivity() {
     private lateinit var vistaMensajes : RecyclerView
     private lateinit var adapter: RecViewAdapter
     private lateinit var txt : TextView
+    private lateinit var button : Button
+    private var database = Firebase.database
+    private var messageRef = database.reference
+    private var personajeRef1 = database.reference
+    private var personajeRef2 = database.reference
+    private lateinit var botonPrueba : Button
+    private var roomName = ""
+    private var uid = ""
+    private var role = ""
+    private var message = ""
+    private var band = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.layout_tablero)
 
         //Definición de variables y recursos, recuperación del personaje desde la actividad CharSelect
-        var randNum = (1..24).random()
-        var personajeNumber:Int = ((intent.getStringExtra("Personaje")).toString()).toInt()
+        var personajeNumber = 4
         var numTableroRand = (1..4).random()
 
         imgPersonajeActual = findViewById(R.id.imgChrctrGame)
@@ -58,6 +75,31 @@ class Tablero : AppCompatActivity() {
         botonpreg3 = findViewById(R.id.botonpreg3)
         botonpreg4 = findViewById(R.id.botonpreg4)
         botonpreg5 = findViewById(R.id.botonpreg5)
+        database = FirebaseDatabase.getInstance()
+        button = findViewById(R.id.btnEnviarMsj)
+        button.isEnabled = false
+        val extras = intent.extras
+        if(extras != null) {
+            roomName = extras.getString("roomName").toString()
+            uid = extras.get("uid").toString()
+            if(roomName == uid){
+                role = "host"
+            }else {
+                role = "guest"
+            }
+        }
+        button.setOnClickListener{
+            button.isEnabled = false
+            //botonPrueba.isEnabled = false
+            message = "$role:Poked!"
+            messageRef.setValue(message)
+        }
+        messageRef = database.getReference("rooms/$roomName/message")
+        message = "$role:Poked!"
+        messageRef.setValue(message)
+        personajeRef1 = database.getReference("rooms/$roomName/player1personaje")
+        personajeRef2 = database.getReference("rooms/$roomName/player2personaje")
+        addRoomEventListener()
         /*Para el recyclerView
         frases.add("es bueno")
         frases.add("es malo")
@@ -75,19 +117,19 @@ class Tablero : AppCompatActivity() {
 
         })*/
         botonpreg1.setOnClickListener{
-            Toast.makeText(this@Tablero,"Le diste click a boton1",Toast.LENGTH_SHORT).show()
+            Toast.makeText(this@TableroOnline,"Le diste click a boton1",Toast.LENGTH_SHORT).show()
         }
         botonpreg2.setOnClickListener{
-            Toast.makeText(this@Tablero,"Le diste click a boton2",Toast.LENGTH_SHORT).show()
+            Toast.makeText(this@TableroOnline,"Le diste click a boton2",Toast.LENGTH_SHORT).show()
         }
         botonpreg3.setOnClickListener{
-            Toast.makeText(this@Tablero,"Le diste click a boton3",Toast.LENGTH_SHORT).show()
+            Toast.makeText(this@TableroOnline,"Le diste click a boton3",Toast.LENGTH_SHORT).show()
         }
         botonpreg4.setOnClickListener{
-            Toast.makeText(this@Tablero,"Le diste click a boton4",Toast.LENGTH_SHORT).show()
+            Toast.makeText(this@TableroOnline,"Le diste click a boton4",Toast.LENGTH_SHORT).show()
         }
         botonpreg5.setOnClickListener{
-            Toast.makeText(this@Tablero,"Le diste click a boton5",Toast.LENGTH_SHORT).show()
+            Toast.makeText(this@TableroOnline,"Le diste click a boton5",Toast.LENGTH_SHORT).show()
         }
         //Definición de variables y recursos
         imgRow11 = findViewById(R.id.row1_1)
@@ -306,5 +348,32 @@ class Tablero : AppCompatActivity() {
             }
 
         }
+    }
+    private fun addRoomEventListener() {
+        messageRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (role == "host") {
+                    if(snapshot.value.toString().contains("guest:")) {
+                        button.isEnabled = true
+                        //botonPrueba.isEnabled = true
+                        Toast.makeText(this@TableroOnline,
+                            "" + snapshot.value.toString().replace("guest:",""), Toast.LENGTH_SHORT).show()
+                        band = 0
+                    }
+                } else {
+                    if(snapshot.value.toString().contains("host:")) {
+                        button.isEnabled = true
+                        //botonPrueba.isEnabled = true
+                        Toast.makeText(this@TableroOnline,
+                            "" + snapshot.value.toString().replace("host:",""), Toast.LENGTH_SHORT).show()
+                        band = 1
+                    }
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+                messageRef.setValue(message)
+            }
+
+        })
     }
 }

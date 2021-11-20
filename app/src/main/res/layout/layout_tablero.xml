@@ -238,7 +238,7 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_margin="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/recViewMsj"
+        app:layout_constraintBottom_toTopOf="@+id/horizontalscroll"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tbl_layout" />
@@ -249,22 +249,75 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="Mensaje"
-        app:layout_constraintBottom_toBottomOf="@id/btnEnviarMsj"
-        app:layout_constraintEnd_toStartOf="@id/btnEnviarMsj"
-        app:layout_constraintStart_toStartOf="parent"
-        />
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/horizontalscroll"
+        app:layout_constraintEnd_toStartOf="@+id/horizontalscroll"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
     <Button
         android:id="@+id/btnEnviarMsj"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/lt_btn01"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/recViewMsj"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="32dp"
 
-        />
+        android:text="@string/lt_btn01"
+        app:layout_constraintBottom_toTopOf="@+id/horizontalscroll"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imgChrctrGame" />
+
+    <HorizontalScrollView
+        android:id="@+id/horizontalscroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/botonpreg1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Pregunta" />
+
+            <Button
+                android:id="@+id/botonpreg2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Pregunta" />
+
+            <Button
+                android:id="@+id/botonpreg3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Pregunta" />
+
+            <Button
+                android:id="@+id/botonpreg4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Pregunta" />
+
+            <Button
+                android:id="@+id/botonpreg5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Pregunta" />
+
+            <Button
+                android:id="@+id/botonpreg6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Pregunta" />
+        </LinearLayout>
+    </HorizontalScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

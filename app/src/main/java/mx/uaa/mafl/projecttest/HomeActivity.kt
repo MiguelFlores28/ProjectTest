@@ -82,7 +82,7 @@ class HomeActivity :AppCompatActivity() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 crear.text = "CREATE ROOM"
                 crear.isEnabled = true
-                val intent = Intent(this@HomeActivity, GameActivity::class.java).apply {
+                val intent = Intent(this@HomeActivity, TableroOnline::class.java).apply {
                     putExtra("roomName", roomName)
                     putExtra("uid",banduid)
                 }
