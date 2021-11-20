@@ -10,17 +10,24 @@ import android.widget.Button
 class GuiaJuego : AppCompatActivity() {
 
     private lateinit var  btn : Button
-
+    private var bandera = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.layout_guia_juego)
 
         /*Botón para regresar al menú principal*/
         btn = findViewById(R.id.btnRegresoInicio)
-
+        val extras = intent.extras
+        if(extras != null) {
+            bandera = extras.getString("band").toString()
+        }
         btn.setOnClickListener(){
-            setContentView(R.layout.layout_menu_principal)
-            startActivity(Intent(this, MenuPrincipal::class.java))
+            if(bandera == "guia") {
+                setContentView(R.layout.layout_menu_principal)
+                startActivity(Intent(this, MenuPrincipal::class.java))
+            }else{
+                startActivity(Intent(this, HomeActivity::class.java))
+            }
         }
     }
 }

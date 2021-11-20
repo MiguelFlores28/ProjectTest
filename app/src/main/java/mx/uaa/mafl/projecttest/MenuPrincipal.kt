@@ -37,13 +37,17 @@ class MenuPrincipal : AppCompatActivity() {
 
         //A la actividad de guía
        btnGuia.setOnClickListener {
-           setContentView(R.layout.layout_guia_juego)
-           startActivity(Intent(this, GuiaJuego::class.java))
+           val intent = Intent(this@MenuPrincipal, GuiaJuego::class.java).apply {
+               putExtra("band","guia")
+           }
+           startActivity(intent)
        }
 
         btnJVJ.setOnClickListener{
-            setContentView(R.layout.layout_guia_juego)
-            startActivity(Intent(this, HomeActivity::class.java))
+            val intent = Intent(this@MenuPrincipal, GuiaJuego::class.java).apply {
+                putExtra("band","pvp")
+            }
+            startActivity(intent)
         }
         //Agregar funcionalidad al botón de jugador contra jugador
     }

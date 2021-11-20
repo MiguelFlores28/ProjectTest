@@ -40,8 +40,6 @@ class Tablero : AppCompatActivity() {
     private lateinit var imgRow62 : ImageButton
     private lateinit var imgRow63 : ImageButton
     private lateinit var imgRow64 : ImageButton
-    private lateinit var vistaMensajes : RecyclerView
-    private lateinit var adapter: RecViewAdapter
     private lateinit var txt : TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,22 +56,7 @@ class Tablero : AppCompatActivity() {
         botonpreg3 = findViewById(R.id.botonpreg3)
         botonpreg4 = findViewById(R.id.botonpreg4)
         botonpreg5 = findViewById(R.id.botonpreg5)
-        /*Para el recyclerView
-        frases.add("es bueno")
-        frases.add("es malo")
-        frases.add("es rojo")
-        vistaMensajes = findViewById(R.id.recViewMsj)
-        adapter = RecViewAdapter()
-        vistaMensajes.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        vistaMensajes.adapter = adapter
-        adapter.setOnItemClickListener(object : RecViewAdapter.onItemClickListener{
-            override fun onItemClick(position: Int) {
 
-                Toast.makeText(this@Tablero,"Le diste click a $position",Toast.LENGTH_SHORT).show()
-
-            }
-
-        })*/
         botonpreg1.setOnClickListener{
             Toast.makeText(this@Tablero,"Le diste click a boton1",Toast.LENGTH_SHORT).show()
         }

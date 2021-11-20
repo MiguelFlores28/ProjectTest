@@ -22,6 +22,25 @@ class TableroOnline : AppCompatActivity() {
     private lateinit var botonpreg3 : Button
     private lateinit var botonpreg4 : Button
     private lateinit var botonpreg5 : Button
+    private lateinit var botonpreg6 : Button
+    private lateinit var botonpreg7 : Button
+    private lateinit var botonpreg8 : Button
+    private lateinit var botonpreg9 : Button
+    private lateinit var botonpreg10 : Button
+    private lateinit var botonpreg11 : Button
+    private lateinit var botonpreg12 : Button
+    private lateinit var botonpreg13 : Button
+    private lateinit var botonpreg14 : Button
+    private lateinit var botonpreg15 : Button
+    private lateinit var botonpreg16 : Button
+    private lateinit var botonpreg17 : Button
+    private lateinit var botonpreg18 : Button
+    private lateinit var botonpreg19 : Button
+    private lateinit var botonpreg20 : Button
+    private lateinit var botonpreg21 : Button
+    private lateinit var botonpreg22 : Button
+    private lateinit var botonpreg23 : Button
+    private lateinit var botonpreg24 : Button
     private lateinit var imgPersonajeActual: ImageView
     private lateinit var imgRow11 : ImageButton
     private lateinit var imgRow12 : ImageButton
@@ -47,37 +66,31 @@ class TableroOnline : AppCompatActivity() {
     private lateinit var imgRow62 : ImageButton
     private lateinit var imgRow63 : ImageButton
     private lateinit var imgRow64 : ImageButton
-    private lateinit var vistaMensajes : RecyclerView
-    private lateinit var adapter: RecViewAdapter
     private lateinit var txt : TextView
     private lateinit var button : Button
     private var database = Firebase.database
     private var messageRef = database.reference
     private var personajeRef1 = database.reference
     private var personajeRef2 = database.reference
+    private var setpersonaje = database.reference
     private lateinit var botonPrueba : Button
     private var roomName = ""
     private var uid = ""
     private var role = ""
     private var message = ""
     private var band = 0
+    private var personajeNumber = 0
+    private var numTableroRand = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.layout_tablero)
 
         //Definición de variables y recursos, recuperación del personaje desde la actividad CharSelect
-        var personajeNumber = 4
-        var numTableroRand = (1..4).random()
-
+        personajeNumber = (1..24).random()
+        numTableroRand = (1..4).random()
         imgPersonajeActual = findViewById(R.id.imgChrctrGame)
-        botonpreg1 = findViewById(R.id.botonpreg1)
-        botonpreg2 = findViewById(R.id.botonpreg2)
-        botonpreg3 = findViewById(R.id.botonpreg3)
-        botonpreg4 = findViewById(R.id.botonpreg4)
-        botonpreg5 = findViewById(R.id.botonpreg5)
         database = FirebaseDatabase.getInstance()
         button = findViewById(R.id.btnEnviarMsj)
-        button.isEnabled = false
         val extras = intent.extras
         if(extras != null) {
             roomName = extras.getString("roomName").toString()
@@ -88,9 +101,11 @@ class TableroOnline : AppCompatActivity() {
                 role = "guest"
             }
         }
+        setupTablero()
+        setupBotonesPreguntas()
         button.setOnClickListener{
             button.isEnabled = false
-            //botonPrueba.isEnabled = false
+            disableButtons()
             message = "$role:Poked!"
             messageRef.setValue(message)
         }
@@ -100,37 +115,280 @@ class TableroOnline : AppCompatActivity() {
         personajeRef1 = database.getReference("rooms/$roomName/player1personaje")
         personajeRef2 = database.getReference("rooms/$roomName/player2personaje")
         addRoomEventListener()
-        /*Para el recyclerView
-        frases.add("es bueno")
-        frases.add("es malo")
-        frases.add("es rojo")
-        vistaMensajes = findViewById(R.id.recViewMsj)
-        adapter = RecViewAdapter()
-        vistaMensajes.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        vistaMensajes.adapter = adapter
-        adapter.setOnItemClickListener(object : RecViewAdapter.onItemClickListener{
-            override fun onItemClick(position: Int) {
-
-                Toast.makeText(this@Tablero,"Le diste click a $position",Toast.LENGTH_SHORT).show()
-
-            }
-
-        })*/
+    }
+    private fun setupBotonesPreguntas(){
+        botonpreg1 = findViewById(R.id.botonpreg1)
+        botonpreg2 = findViewById(R.id.botonpreg2)
+        botonpreg3 = findViewById(R.id.botonpreg3)
+        botonpreg4 = findViewById(R.id.botonpreg4)
+        botonpreg5 = findViewById(R.id.botonpreg5)
+        botonpreg6 = findViewById(R.id.botonpreg6)
+        botonpreg7 = findViewById(R.id.botonpreg7)
+        botonpreg8 = findViewById(R.id.botonpreg8)
+        botonpreg9 = findViewById(R.id.botonpreg9)
+        botonpreg10 = findViewById(R.id.botonpreg10)
+        botonpreg11 = findViewById(R.id.botonpreg11)
+        botonpreg12 = findViewById(R.id.botonpreg12)
+        botonpreg13 = findViewById(R.id.botonpreg13)
+        botonpreg14 = findViewById(R.id.botonpreg14)
+        botonpreg15 = findViewById(R.id.botonpreg15)
+        botonpreg16 = findViewById(R.id.botonpreg16)
+        botonpreg17 = findViewById(R.id.botonpreg17)
+        botonpreg18 = findViewById(R.id.botonpreg18)
+        botonpreg19 = findViewById(R.id.botonpreg19)
+        botonpreg20 = findViewById(R.id.botonpreg20)
+        botonpreg21 = findViewById(R.id.botonpreg21)
+        botonpreg22 = findViewById(R.id.botonpreg22)
+        botonpreg23 = findViewById(R.id.botonpreg23)
+        botonpreg24 = findViewById(R.id.botonpreg24)
         botonpreg1.setOnClickListener{
-            Toast.makeText(this@TableroOnline,"Le diste click a boton1",Toast.LENGTH_SHORT).show()
+            disableButtons()
+            if(band == 1){
+                preguntarPersonaje1("mario")
+            }else{
+                preguntarPersonaje2("mario")
+            }
         }
         botonpreg2.setOnClickListener{
-            Toast.makeText(this@TableroOnline,"Le diste click a boton2",Toast.LENGTH_SHORT).show()
+            disableButtons()
+            if(band == 1){
+                preguntarPersonaje1("bowser")
+            }else{
+                preguntarPersonaje2("bowser")
+            }
         }
         botonpreg3.setOnClickListener{
-            Toast.makeText(this@TableroOnline,"Le diste click a boton3",Toast.LENGTH_SHORT).show()
+            disableButtons()
+            if(band == 1){
+                preguntarPersonaje1("peach")
+            }else{
+                preguntarPersonaje2("peach")
+            }
         }
         botonpreg4.setOnClickListener{
-            Toast.makeText(this@TableroOnline,"Le diste click a boton4",Toast.LENGTH_SHORT).show()
+            disableButtons()
+            if(band == 1){
+                preguntarPersonaje1("samus")
+            }else{
+                preguntarPersonaje2("samus")
+            }
         }
         botonpreg5.setOnClickListener{
-            Toast.makeText(this@TableroOnline,"Le diste click a boton5",Toast.LENGTH_SHORT).show()
+            disableButtons()
+            if(band == 1){
+                preguntarPersonaje1("darksamus")
+            }else{
+                preguntarPersonaje2("darksamus")
+            }
         }
+        botonpreg6.setOnClickListener{
+            disableButtons()
+            if(band == 1){
+                preguntarPersonaje1("ridley")
+            }else{
+                preguntarPersonaje2("ridley")
+            }
+        }
+        botonpreg7.setOnClickListener{
+            disableButtons()
+            if(band == 1){
+                preguntarPersonaje1("dk")
+            }else{
+                preguntarPersonaje2("dk")
+            }
+        }
+        botonpreg8.setOnClickListener{
+            disableButtons()
+            if(band == 1){
+                preguntarPersonaje1("didykong")
+            }else{
+                preguntarPersonaje2("didykong")
+            }
+        }
+        botonpreg9.setOnClickListener{
+            disableButtons()
+            if(band == 1){
+                preguntarPersonaje1("krool")
+            }else{
+                preguntarPersonaje2("krool")
+            }
+        }
+        botonpreg10.setOnClickListener{
+            disableButtons()
+            if(band == 1){
+                preguntarPersonaje1("pikachu")
+            }else{
+                preguntarPersonaje2("pikachu")
+            }
+        }
+        botonpreg11.setOnClickListener{
+            disableButtons()
+            if(band == 1){
+                preguntarPersonaje1("greninja")
+            }else{
+                preguntarPersonaje2("greninja")
+            }
+        }
+        botonpreg12.setOnClickListener{
+            disableButtons()
+            if(band == 1){
+                preguntarPersonaje1("jigglypuff")
+            }else{
+                preguntarPersonaje2("jigglypuff")
+            }
+        }
+        botonpreg13.setOnClickListener{
+            disableButtons()
+            if(band == 1){
+                preguntarPersonaje1("kirby")
+            }else{
+                preguntarPersonaje2("kirby")
+            }
+        }
+        botonpreg14.setOnClickListener{
+            disableButtons()
+            if(band == 1){
+                preguntarPersonaje1("dedede")
+            }else{
+                preguntarPersonaje2("dedede")
+            }
+        }
+        botonpreg15.setOnClickListener{
+            disableButtons()
+            if(band == 1){
+                preguntarPersonaje1("mknight")
+            }else{
+                preguntarPersonaje2("mknight")
+            }
+        }
+        botonpreg16.setOnClickListener{
+            disableButtons()
+            if(band == 1){
+                preguntarPersonaje1("lucina")
+            }else{
+                preguntarPersonaje2("lucina")
+            }
+        }
+        botonpreg17.setOnClickListener{
+            disableButtons()
+            if(band == 1){
+                preguntarPersonaje1("roy")
+            }else{
+                preguntarPersonaje2("roy")
+            }
+        }
+        botonpreg18.setOnClickListener{
+            disableButtons()
+            if(band == 1){
+                preguntarPersonaje1("ike")
+            }else{
+                preguntarPersonaje2("ike")
+            }
+        }
+        botonpreg19.setOnClickListener{
+            disableButtons()
+            if(band == 1){
+                preguntarPersonaje1("link")
+            }else{
+                preguntarPersonaje2("link")
+            }
+        }
+        botonpreg20.setOnClickListener{
+            disableButtons()
+            if(band == 1){
+                preguntarPersonaje1("zelda")
+            }else{
+                preguntarPersonaje2("zelda")
+            }
+        }
+        botonpreg21.setOnClickListener{
+            disableButtons()
+            if(band == 1){
+                preguntarPersonaje1("ganondorf")
+            }else{
+                preguntarPersonaje2("ganondorf")
+            }
+        }
+        botonpreg22.setOnClickListener{
+            disableButtons()
+            if(band == 1){
+                preguntarPersonaje1("fox")
+            }else{
+                preguntarPersonaje2("fox")
+            }
+        }
+        botonpreg23.setOnClickListener{
+            disableButtons()
+            if(band == 1){
+                preguntarPersonaje1("falco")
+            }else{
+                preguntarPersonaje2("falco")
+            }
+        }
+        botonpreg24.setOnClickListener{
+            disableButtons()
+            if(band == 1){
+                preguntarPersonaje1("wolf")
+            }else{
+                preguntarPersonaje2("wolf")
+            }
+        }
+    }
+
+
+    private fun disableButtons(){
+        botonpreg1.isEnabled = false
+        botonpreg2.isEnabled = false
+        botonpreg3.isEnabled = false
+        botonpreg4.isEnabled = false
+        botonpreg5.isEnabled = false
+        botonpreg6.isEnabled = false
+        botonpreg7.isEnabled = false
+        botonpreg8.isEnabled = false
+        botonpreg9.isEnabled = false
+        botonpreg10.isEnabled = false
+        botonpreg11.isEnabled = false
+        botonpreg12.isEnabled = false
+        botonpreg13.isEnabled = false
+        botonpreg14.isEnabled = false
+        botonpreg15.isEnabled = false
+        botonpreg16.isEnabled = false
+        botonpreg17.isEnabled = false
+        botonpreg18.isEnabled = false
+        botonpreg19.isEnabled = false
+        botonpreg20.isEnabled = false
+        botonpreg21.isEnabled = false
+        botonpreg22.isEnabled = false
+        botonpreg23.isEnabled = false
+        botonpreg24.isEnabled = false
+    }
+    private fun enableButtons(){
+        botonpreg1.isEnabled = true
+        botonpreg2.isEnabled = true
+        botonpreg3.isEnabled = true
+        botonpreg4.isEnabled = true
+        botonpreg5.isEnabled = true
+        botonpreg6.isEnabled = true
+        botonpreg7.isEnabled = true
+        botonpreg8.isEnabled = true
+        botonpreg9.isEnabled = true
+        botonpreg10.isEnabled = true
+        botonpreg11.isEnabled = true
+        botonpreg12.isEnabled = true
+        botonpreg13.isEnabled = true
+        botonpreg14.isEnabled = true
+        botonpreg15.isEnabled = true
+        botonpreg16.isEnabled = true
+        botonpreg17.isEnabled = true
+        botonpreg18.isEnabled = true
+        botonpreg19.isEnabled = true
+        botonpreg20.isEnabled = true
+        botonpreg21.isEnabled = true
+        botonpreg22.isEnabled = true
+        botonpreg23.isEnabled = true
+        botonpreg24.isEnabled = true
+    }
+    private fun setupTablero(){
         //Definición de variables y recursos
         imgRow11 = findViewById(R.id.row1_1)
         imgRow12 = findViewById(R.id.row1_2)
@@ -161,34 +419,39 @@ class TableroOnline : AppCompatActivity() {
         imgRow64 = findViewById(R.id.row6_4)
 
         /*Se genera un número aleatorio el cual será el que nos proporcionará un personaje al azar*/
+        if(role == "host"){
+            setpersonaje = database.getReference("rooms/$roomName/player1personaje")
+        }else{
+            setpersonaje = database.getReference("rooms/$roomName/player2personaje")
+        }
         when (personajeNumber){
-            1 ->{ imgPersonajeActual.setImageResource(R.drawable.mario)}
-            2 ->{ imgPersonajeActual.setImageResource(R.drawable.bowser)}
-            3 ->{ imgPersonajeActual.setImageResource(R.drawable.peach)}
-            4 ->{ imgPersonajeActual.setImageResource(R.drawable.samus)}
-            5 ->{ imgPersonajeActual.setImageResource(R.drawable.dark_samus)}
-            6 ->{ imgPersonajeActual.setImageResource(R.drawable.ridley)}
+            1 ->{ imgPersonajeActual.setImageResource(R.drawable.mario);setpersonaje.setValue("mario") }
+            2 ->{ imgPersonajeActual.setImageResource(R.drawable.bowser);setpersonaje.setValue("bowser")}
+            3 ->{ imgPersonajeActual.setImageResource(R.drawable.peach);setpersonaje.setValue("peach")}
+            4 ->{ imgPersonajeActual.setImageResource(R.drawable.samus);setpersonaje.setValue("samus")}
+            5 ->{ imgPersonajeActual.setImageResource(R.drawable.dark_samus);setpersonaje.setValue("darksamus")}
+            6 ->{ imgPersonajeActual.setImageResource(R.drawable.ridley);setpersonaje.setValue("ridley")}
 
-            7 ->{ imgPersonajeActual.setImageResource(R.drawable.dk)}
-            8 ->{ imgPersonajeActual.setImageResource(R.drawable.didykong)}
-            9 ->{ imgPersonajeActual.setImageResource(R.drawable.krool)}
-            10 ->{ imgPersonajeActual.setImageResource(R.drawable.pikachu)}
-            11 ->{ imgPersonajeActual.setImageResource(R.drawable.greninja)}
-            12 ->{ imgPersonajeActual.setImageResource(R.drawable.jigglypuff)}
+            7 ->{ imgPersonajeActual.setImageResource(R.drawable.dk);setpersonaje.setValue("dk")}
+            8 ->{ imgPersonajeActual.setImageResource(R.drawable.didykong);setpersonaje.setValue("didykong")}
+            9 ->{ imgPersonajeActual.setImageResource(R.drawable.krool);setpersonaje.setValue("krool")}
+            10 ->{ imgPersonajeActual.setImageResource(R.drawable.pikachu);setpersonaje.setValue("pikachu")}
+            11 ->{ imgPersonajeActual.setImageResource(R.drawable.greninja);setpersonaje.setValue("greninja")}
+            12 ->{ imgPersonajeActual.setImageResource(R.drawable.jigglypuff);setpersonaje.setValue("jigglypuff")}
 
-            13 ->{ imgPersonajeActual.setImageResource(R.drawable.kirby)}
-            14 ->{ imgPersonajeActual.setImageResource(R.drawable.dedede)}
-            15 ->{ imgPersonajeActual.setImageResource(R.drawable.mknight)}
-            16 ->{ imgPersonajeActual.setImageResource(R.drawable.lucina)}
-            17 ->{ imgPersonajeActual.setImageResource(R.drawable.roy)}
-            18 ->{ imgPersonajeActual.setImageResource(R.drawable.ike)}
+            13 ->{ imgPersonajeActual.setImageResource(R.drawable.kirby);setpersonaje.setValue("kirby")}
+            14 ->{ imgPersonajeActual.setImageResource(R.drawable.dedede);setpersonaje.setValue("dedede")}
+            15 ->{ imgPersonajeActual.setImageResource(R.drawable.mknight);setpersonaje.setValue("mknight")}
+            16 ->{ imgPersonajeActual.setImageResource(R.drawable.lucina);setpersonaje.setValue("lucina")}
+            17 ->{ imgPersonajeActual.setImageResource(R.drawable.roy);setpersonaje.setValue("roy")}
+            18 ->{ imgPersonajeActual.setImageResource(R.drawable.ike);setpersonaje.setValue("ike")}
 
-            19 ->{ imgPersonajeActual.setImageResource(R.drawable.hyrulelink)}
-            20 ->{ imgPersonajeActual.setImageResource(R.drawable.zelda)}
-            21 ->{ imgPersonajeActual.setImageResource(R.drawable.ganondorf)}
-            22 ->{ imgPersonajeActual.setImageResource(R.drawable.foxmcloud)}
-            23 ->{ imgPersonajeActual.setImageResource(R.drawable.falco)}
-            24 ->{ imgPersonajeActual.setImageResource(R.drawable.wolf)}
+            19 ->{ imgPersonajeActual.setImageResource(R.drawable.hyrulelink);setpersonaje.setValue("link")}
+            20 ->{ imgPersonajeActual.setImageResource(R.drawable.zelda);setpersonaje.setValue("zelda")}
+            21 ->{ imgPersonajeActual.setImageResource(R.drawable.ganondorf);setpersonaje.setValue("ganondorf")}
+            22 ->{ imgPersonajeActual.setImageResource(R.drawable.foxmcloud);setpersonaje.setValue("fox")}
+            23 ->{ imgPersonajeActual.setImageResource(R.drawable.falco);setpersonaje.setValue("falco")}
+            24 ->{ imgPersonajeActual.setImageResource(R.drawable.wolf);setpersonaje.setValue("wolf")}
 
         }
 
@@ -223,9 +486,7 @@ class TableroOnline : AppCompatActivity() {
         imgRow62.setOnClickListener(){Thread.sleep(500); imgRow62.setImageResource(R.drawable.smashball)}
         imgRow63.setOnClickListener(){Thread.sleep(500); imgRow63.setImageResource(R.drawable.smashball)}
         imgRow64.setOnClickListener(){Thread.sleep(500); imgRow64.setImageResource(R.drawable.smashball)}
-
     }
-
     /*Se generaron tableros predefinidos que serán cargados de manera aleatoria de acuerdo al número
     * aleatorio que se haya mandado como parámetro a la función*/
     fun generarTablero(numeroTablero: Int){
@@ -355,7 +616,7 @@ class TableroOnline : AppCompatActivity() {
                 if (role == "host") {
                     if(snapshot.value.toString().contains("guest:")) {
                         button.isEnabled = true
-                        //botonPrueba.isEnabled = true
+                        enableButtons()
                         Toast.makeText(this@TableroOnline,
                             "" + snapshot.value.toString().replace("guest:",""), Toast.LENGTH_SHORT).show()
                         band = 0
@@ -363,7 +624,7 @@ class TableroOnline : AppCompatActivity() {
                 } else {
                     if(snapshot.value.toString().contains("host:")) {
                         button.isEnabled = true
-                        //botonPrueba.isEnabled = true
+                        enableButtons()
                         Toast.makeText(this@TableroOnline,
                             "" + snapshot.value.toString().replace("host:",""), Toast.LENGTH_SHORT).show()
                         band = 1
@@ -372,6 +633,41 @@ class TableroOnline : AppCompatActivity() {
             }
             override fun onCancelled(error: DatabaseError) {
                 messageRef.setValue(message)
+            }
+
+        })
+    }
+    private fun preguntarPersonaje1(personaje : String){
+        personajeRef1.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                Log.d("pp1: ",snapshot.value.toString())
+                if(snapshot.value.toString().contains(personaje)) {
+                    Toast.makeText(this@TableroOnline,
+                        "Si es $personaje", Toast.LENGTH_SHORT).show()
+                }else{
+                    Toast.makeText(this@TableroOnline,
+                        "No es $personaje", Toast.LENGTH_SHORT).show()
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        })
+    }
+    private fun preguntarPersonaje2(personaje:String){
+        personajeRef2.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                Log.d("pp2: ",snapshot.value.toString())
+                if(snapshot.value.toString().contains(personaje)) {
+                    Toast.makeText(this@TableroOnline,
+                        "Si es $personaje", Toast.LENGTH_SHORT).show()
+                }else{
+                    Toast.makeText(this@TableroOnline,
+                        "No es $personaje", Toast.LENGTH_SHORT).show()
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
             }
 
         })
