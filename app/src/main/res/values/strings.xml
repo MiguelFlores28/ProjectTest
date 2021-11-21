@@ -39,7 +39,7 @@
     <!--Layout_user_login-->
     <string name="lul_str01">¡Bienvenido!</string>
     <string name="lul_str02">Iniciar Sesión</string>
-    <string name="lul_hnt01">Usuario</string>
+    <string name="lul_hnt01">Email</string>
     <string name="lul_hnt02">Contraseña</string>
     <string name="lul_btn01">Iniciar Sesión</string>
 </resources>

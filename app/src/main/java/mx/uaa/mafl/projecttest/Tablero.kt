@@ -1,17 +1,17 @@
 package mx.uaa.mafl.projecttest
 
-import android.media.Image
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import android.widget.*
 
 class Tablero : AppCompatActivity() {
 
     //Definición de variables y recursos
+    private lateinit var botonpreg1 : Button
+    private lateinit var botonpreg2 : Button
+    private lateinit var botonpreg3 : Button
+    private lateinit var botonpreg4 : Button
+    private lateinit var botonpreg5 : Button
     private lateinit var imgPersonajeActual: ImageView
     private lateinit var imgRow11 : ImageButton
     private lateinit var imgRow12 : ImageButton
@@ -37,27 +37,37 @@ class Tablero : AppCompatActivity() {
     private lateinit var imgRow62 : ImageButton
     private lateinit var imgRow63 : ImageButton
     private lateinit var imgRow64 : ImageButton
-    private lateinit var vistaMensajes : RecyclerView
-    private lateinit var adapter: RecViewAdapter
     private lateinit var txt : TextView
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.layout_tablero)
 
         //Definición de variables y recursos, recuperación del personaje desde la actividad CharSelect
-        var randNum = (1..24).random()
         var personajeNumber:Int = ((intent.getStringExtra("Personaje")).toString()).toInt()
         var numTableroRand = (1..4).random()
 
         imgPersonajeActual = findViewById(R.id.imgChrctrGame)
+        botonpreg1 = findViewById(R.id.botonpreg1)
+        botonpreg2 = findViewById(R.id.botonpreg2)
+        botonpreg3 = findViewById(R.id.botonpreg3)
+        botonpreg4 = findViewById(R.id.botonpreg4)
+        botonpreg5 = findViewById(R.id.botonpreg5)
 
-        //Para el recyclerView
-        vistaMensajes = findViewById(R.id.recViewMsj)
-        adapter = RecViewAdapter()
-        vistaMensajes.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        vistaMensajes.adapter = adapter
-
+        botonpreg1.setOnClickListener{
+            Toast.makeText(this@Tablero,"Le diste click a boton1",Toast.LENGTH_SHORT).show()
+        }
+        botonpreg2.setOnClickListener{
+            Toast.makeText(this@Tablero,"Le diste click a boton2",Toast.LENGTH_SHORT).show()
+        }
+        botonpreg3.setOnClickListener{
+            Toast.makeText(this@Tablero,"Le diste click a boton3",Toast.LENGTH_SHORT).show()
+        }
+        botonpreg4.setOnClickListener{
+            Toast.makeText(this@Tablero,"Le diste click a boton4",Toast.LENGTH_SHORT).show()
+        }
+        botonpreg5.setOnClickListener{
+            Toast.makeText(this@Tablero,"Le diste click a boton5",Toast.LENGTH_SHORT).show()
+        }
         //Definición de variables y recursos
         imgRow11 = findViewById(R.id.row1_1)
         imgRow12 = findViewById(R.id.row1_2)
