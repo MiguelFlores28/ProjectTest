@@ -1,11 +1,8 @@
 package mx.uaa.mafl.projecttest
 
-import android.media.Image
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 
 class Tablero : AppCompatActivity() {
 
@@ -46,7 +43,6 @@ class Tablero : AppCompatActivity() {
         setContentView(R.layout.layout_tablero)
 
         //Definición de variables y recursos, recuperación del personaje desde la actividad CharSelect
-        var randNum = (1..24).random()
         var personajeNumber:Int = ((intent.getStringExtra("Personaje")).toString()).toInt()
         var numTableroRand = (1..4).random()
 

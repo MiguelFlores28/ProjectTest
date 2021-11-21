@@ -1,12 +1,9 @@
 package mx.uaa.mafl.projecttest
 
-import android.media.Image
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.*
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -17,6 +14,21 @@ import com.google.firebase.ktx.Firebase
 class TableroOnline : AppCompatActivity() {
 
     //Definición de variables y recursos
+    private lateinit var botonTamano1 : Button
+    private lateinit var botonTamano2 : Button
+    private lateinit var botonTamano3 : Button
+    private lateinit var botonTamano4 : Button
+    private lateinit var botonCombate1 : Button
+    private lateinit var botonCombate2 : Button
+    private lateinit var botonCombate3 : Button
+    private lateinit var botonFranq1 :Button
+    private lateinit var botonFranq2 :Button
+    private lateinit var botonFranq3 :Button
+    private lateinit var botonFranq4 :Button
+    private lateinit var botonFranq5 :Button
+    private lateinit var botonFranq6 :Button
+    private lateinit var botonFranq7 :Button
+    private lateinit var botonFranq8 :Button
     private lateinit var botonpreg1 : Button
     private lateinit var botonpreg2 : Button
     private lateinit var botonpreg3 : Button
@@ -81,10 +93,11 @@ class TableroOnline : AppCompatActivity() {
     private var band = 0
     private var personajeNumber = 0
     private var numTableroRand = 0
+    var listaPersonaje  = arrayListOf<Personaje>()
+    private var tempstring = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.layout_tablero)
-
         //Definición de variables y recursos, recuperación del personaje desde la actividad CharSelect
         personajeNumber = (1..24).random()
         numTableroRand = (1..4).random()
@@ -103,6 +116,7 @@ class TableroOnline : AppCompatActivity() {
         }
         setupTablero()
         setupBotonesPreguntas()
+        setupArrayList()
         button.setOnClickListener{
             button.isEnabled = false
             disableButtons()
@@ -116,7 +130,48 @@ class TableroOnline : AppCompatActivity() {
         personajeRef2 = database.getReference("rooms/$roomName/player2personaje")
         addRoomEventListener()
     }
+    private fun setupArrayList(){
+        listaPersonaje.add(Personaje(1, "mario", 1, 2, 1))
+        listaPersonaje.add(Personaje(2, "bowser", 1, 4, 1))
+        listaPersonaje.add(Personaje(3, "peach", 1, 2, 2))
+        listaPersonaje.add(Personaje(4, "samus", 2, 3, 2))
+        listaPersonaje.add(Personaje(5, "darksamus", 2, 3, 2))
+        listaPersonaje.add(Personaje(6, "ridley", 2, 4, 1))
+        listaPersonaje.add(Personaje(7, "dk", 3, 4, 1))
+        listaPersonaje.add(Personaje(8, "didykong", 3, 1, 1))
+        listaPersonaje.add(Personaje(9, "krool", 3, 4, 2))
+        listaPersonaje.add(Personaje(10, "pikachu", 4, 1, 2))
+        listaPersonaje.add(Personaje(11, "greninja", 4, 2, 1))
+        listaPersonaje.add(Personaje(12, "jigglypuff", 4, 1, 1))
+        listaPersonaje.add(Personaje(13, "kirby", 5, 1, 1))
+        listaPersonaje.add(Personaje(14, "dedede", 5, 4, 3))
+        listaPersonaje.add(Personaje(15, "mknight", 5, 1, 3))
+        listaPersonaje.add(Personaje(16, "lucina", 6, 2, 3))
+        listaPersonaje.add(Personaje(17, "roy", 6, 2, 3))
+        listaPersonaje.add(Personaje(18, "ike", 6, 3, 3))
+        listaPersonaje.add(Personaje(19, "link", 7, 2, 3))
+        listaPersonaje.add(Personaje(20, "zelda", 7, 2, 2))
+        listaPersonaje.add(Personaje(21, "ganondorf", 7, 3, 1))
+        listaPersonaje.add(Personaje(22, "fox", 8, 2, 1))
+        listaPersonaje.add(Personaje(23, "falco", 8, 2, 2))
+        listaPersonaje.add(Personaje(24, "wolf", 8, 2, 1))
+    }
     private fun setupBotonesPreguntas(){
+        botonTamano1 = findViewById(R.id.botonTamano1)
+        botonTamano2 = findViewById(R.id.botonTamano2)
+        botonTamano3 = findViewById(R.id.botonTamano3)
+        botonTamano4 = findViewById(R.id.botonTamano4)
+        botonFranq1 = findViewById(R.id.botonFranq1)
+        botonFranq2 = findViewById(R.id.botonFranq2)
+        botonFranq3 = findViewById(R.id.botonFranq3)
+        botonFranq4 = findViewById(R.id.botonFranq4)
+        botonFranq5 = findViewById(R.id.botonFranq5)
+        botonFranq6 = findViewById(R.id.botonFranq6)
+        botonFranq7 = findViewById(R.id.botonFranq7)
+        botonFranq8 = findViewById(R.id.botonFranq8)
+        botonCombate1 = findViewById(R.id.botonCombate1)
+        botonCombate2 = findViewById(R.id.botonCombate2)
+        botonCombate3 = findViewById(R.id.botonCombate3)
         botonpreg1 = findViewById(R.id.botonpreg1)
         botonpreg2 = findViewById(R.id.botonpreg2)
         botonpreg3 = findViewById(R.id.botonpreg3)
@@ -141,6 +196,143 @@ class TableroOnline : AppCompatActivity() {
         botonpreg22 = findViewById(R.id.botonpreg22)
         botonpreg23 = findViewById(R.id.botonpreg23)
         botonpreg24 = findViewById(R.id.botonpreg24)
+        //eventos botones
+        botonTamano1.setOnClickListener{
+            disableButtons()
+            tempstring = "Mini"
+            if(band == 1){
+                preguntarPersonajeTamano1(1)
+            }else{
+                preguntarPersonajeTamano2(1)
+            }
+        }
+        botonTamano2.setOnClickListener{
+            disableButtons()
+            tempstring = "Pequeño"
+            if(band == 1){
+                preguntarPersonajeTamano1(2)
+            }else{
+                preguntarPersonajeTamano2(2)
+            }
+        }
+        botonTamano3.setOnClickListener{
+            disableButtons()
+            tempstring = "Mediano"
+            if(band == 1){
+                preguntarPersonajeTamano1(3)
+            }else{
+                preguntarPersonajeTamano2(3)
+            }
+        }
+        botonTamano4.setOnClickListener{
+            disableButtons()
+            tempstring = "Grande"
+            if(band == 1){
+                preguntarPersonajeTamano1(4)
+            }else{
+                preguntarPersonajeTamano2(4)
+            }
+        }
+
+        botonFranq1.setOnClickListener{
+            disableButtons()
+            tempstring = "Mario"
+            if(band == 1){
+                preguntarPersonajeFranq1(1)
+            }else{
+                preguntarPersonajeFranq2(1)
+            }
+        }
+        botonFranq2.setOnClickListener{
+            disableButtons()
+            tempstring = "Metroid"
+            if(band == 1){
+                preguntarPersonajeFranq1(2)
+            }else{
+                preguntarPersonajeFranq2(2)
+            }
+        }
+        botonFranq3.setOnClickListener{
+            tempstring = "DK"
+            disableButtons()
+            if(band == 1){
+                preguntarPersonajeFranq1(3)
+            }else{
+                preguntarPersonajeFranq2(3)
+            }
+        }
+        botonFranq4.setOnClickListener{
+            tempstring = "Pokemon"
+            disableButtons()
+            if(band == 1){
+                preguntarPersonajeFranq1(4)
+            }else{
+                preguntarPersonajeFranq2(4)
+            }
+        }
+        botonFranq5.setOnClickListener{
+            tempstring = "Kirby"
+            disableButtons()
+            if(band == 1){
+                preguntarPersonajeFranq1(5)
+            }else{
+                preguntarPersonajeFranq2(5)
+            }
+        }
+        botonFranq6.setOnClickListener{
+            tempstring = "Fire Emblem"
+            disableButtons()
+            if(band == 1){
+                preguntarPersonajeFranq1(6)
+            }else{
+                preguntarPersonajeFranq2(6)
+            }
+        }
+        botonFranq7.setOnClickListener{
+            tempstring = "Zelda"
+            disableButtons()
+            if(band == 1){
+                preguntarPersonajeFranq1(7)
+            }else{
+                preguntarPersonajeFranq2(7)
+            }
+        }
+        botonFranq8.setOnClickListener{
+            tempstring = "StarFox"
+            disableButtons()
+            if(band == 1){
+                preguntarPersonajeFranq1(8)
+            }else{
+                preguntarPersonajeFranq2(8)
+            }
+        }
+        botonCombate1.setOnClickListener{
+            tempstring = "Espada"
+            disableButtons()
+            if(band == 1){
+                preguntarPersonajeCombate1(3)
+            }else{
+                preguntarPersonajeCombate2(3)
+            }
+        }
+        botonCombate2.setOnClickListener{
+            tempstring = "Proyectiles"
+            disableButtons()
+            if(band == 1){
+                preguntarPersonajeCombate1(2)
+            }else{
+                preguntarPersonajeCombate2(2)
+            }
+        }
+        botonCombate3.setOnClickListener{
+            tempstring = "Golpes"
+            disableButtons()
+            if(band == 1){
+                preguntarPersonajeCombate1(1)
+            }else{
+                preguntarPersonajeCombate2(1)
+            }
+        }
         botonpreg1.setOnClickListener{
             disableButtons()
             if(band == 1){
@@ -337,6 +529,21 @@ class TableroOnline : AppCompatActivity() {
 
 
     private fun disableButtons(){
+        botonTamano1.isEnabled = false
+        botonTamano2.isEnabled = false
+        botonTamano3.isEnabled = false
+        botonTamano4.isEnabled = false
+        botonFranq1.isEnabled = false
+        botonFranq2.isEnabled = false
+        botonFranq3.isEnabled = false
+        botonFranq4.isEnabled = false
+        botonFranq5.isEnabled = false
+        botonFranq6.isEnabled = false
+        botonFranq7.isEnabled = false
+        botonFranq8.isEnabled = false
+        botonCombate1.isEnabled = false
+        botonCombate2.isEnabled = false
+        botonCombate3.isEnabled = false
         botonpreg1.isEnabled = false
         botonpreg2.isEnabled = false
         botonpreg3.isEnabled = false
@@ -363,6 +570,21 @@ class TableroOnline : AppCompatActivity() {
         botonpreg24.isEnabled = false
     }
     private fun enableButtons(){
+        botonTamano1.isEnabled = true
+        botonTamano2.isEnabled = true
+        botonTamano3.isEnabled = true
+        botonTamano4.isEnabled = true
+        botonFranq1.isEnabled = true
+        botonFranq2.isEnabled = true
+        botonFranq3.isEnabled = true
+        botonFranq4.isEnabled = true
+        botonFranq5.isEnabled = true
+        botonFranq6.isEnabled = true
+        botonFranq7.isEnabled = true
+        botonFranq8.isEnabled = true
+        botonCombate1.isEnabled = true
+        botonCombate2.isEnabled = true
+        botonCombate3.isEnabled = true
         botonpreg1.isEnabled = true
         botonpreg2.isEnabled = true
         botonpreg3.isEnabled = true
@@ -425,35 +647,36 @@ class TableroOnline : AppCompatActivity() {
             setpersonaje = database.getReference("rooms/$roomName/player2personaje")
         }
         when (personajeNumber){
-            1 ->{ imgPersonajeActual.setImageResource(R.drawable.mario);setpersonaje.setValue("mario") }
-            2 ->{ imgPersonajeActual.setImageResource(R.drawable.bowser);setpersonaje.setValue("bowser")}
-            3 ->{ imgPersonajeActual.setImageResource(R.drawable.peach);setpersonaje.setValue("peach")}
-            4 ->{ imgPersonajeActual.setImageResource(R.drawable.samus);setpersonaje.setValue("samus")}
-            5 ->{ imgPersonajeActual.setImageResource(R.drawable.dark_samus);setpersonaje.setValue("darksamus")}
-            6 ->{ imgPersonajeActual.setImageResource(R.drawable.ridley);setpersonaje.setValue("ridley")}
+            1 ->{ imgPersonajeActual.setImageResource(R.drawable.mario)}
+            2 ->{ imgPersonajeActual.setImageResource(R.drawable.bowser)}
+            3 ->{ imgPersonajeActual.setImageResource(R.drawable.peach)}
+            4 ->{ imgPersonajeActual.setImageResource(R.drawable.samus)}
+            5 ->{ imgPersonajeActual.setImageResource(R.drawable.dark_samus)}
+            6 ->{ imgPersonajeActual.setImageResource(R.drawable.ridley)}
 
-            7 ->{ imgPersonajeActual.setImageResource(R.drawable.dk);setpersonaje.setValue("dk")}
-            8 ->{ imgPersonajeActual.setImageResource(R.drawable.didykong);setpersonaje.setValue("didykong")}
-            9 ->{ imgPersonajeActual.setImageResource(R.drawable.krool);setpersonaje.setValue("krool")}
-            10 ->{ imgPersonajeActual.setImageResource(R.drawable.pikachu);setpersonaje.setValue("pikachu")}
-            11 ->{ imgPersonajeActual.setImageResource(R.drawable.greninja);setpersonaje.setValue("greninja")}
-            12 ->{ imgPersonajeActual.setImageResource(R.drawable.jigglypuff);setpersonaje.setValue("jigglypuff")}
+            7 ->{ imgPersonajeActual.setImageResource(R.drawable.dk)}
+            8 ->{ imgPersonajeActual.setImageResource(R.drawable.didykong)}
+            9 ->{ imgPersonajeActual.setImageResource(R.drawable.krool)}
+            10 ->{ imgPersonajeActual.setImageResource(R.drawable.pikachu)}
+            11 ->{ imgPersonajeActual.setImageResource(R.drawable.greninja)}
+            12 ->{ imgPersonajeActual.setImageResource(R.drawable.jigglypuff)}
 
-            13 ->{ imgPersonajeActual.setImageResource(R.drawable.kirby);setpersonaje.setValue("kirby")}
-            14 ->{ imgPersonajeActual.setImageResource(R.drawable.dedede);setpersonaje.setValue("dedede")}
-            15 ->{ imgPersonajeActual.setImageResource(R.drawable.mknight);setpersonaje.setValue("mknight")}
-            16 ->{ imgPersonajeActual.setImageResource(R.drawable.lucina);setpersonaje.setValue("lucina")}
-            17 ->{ imgPersonajeActual.setImageResource(R.drawable.roy);setpersonaje.setValue("roy")}
-            18 ->{ imgPersonajeActual.setImageResource(R.drawable.ike);setpersonaje.setValue("ike")}
+            13 ->{ imgPersonajeActual.setImageResource(R.drawable.kirby)}
+            14 ->{ imgPersonajeActual.setImageResource(R.drawable.dedede)}
+            15 ->{ imgPersonajeActual.setImageResource(R.drawable.mknight)}
+            16 ->{ imgPersonajeActual.setImageResource(R.drawable.lucina)}
+            17 ->{ imgPersonajeActual.setImageResource(R.drawable.roy)}
+            18 ->{ imgPersonajeActual.setImageResource(R.drawable.ike)}
 
-            19 ->{ imgPersonajeActual.setImageResource(R.drawable.hyrulelink);setpersonaje.setValue("link")}
-            20 ->{ imgPersonajeActual.setImageResource(R.drawable.zelda);setpersonaje.setValue("zelda")}
-            21 ->{ imgPersonajeActual.setImageResource(R.drawable.ganondorf);setpersonaje.setValue("ganondorf")}
-            22 ->{ imgPersonajeActual.setImageResource(R.drawable.foxmcloud);setpersonaje.setValue("fox")}
-            23 ->{ imgPersonajeActual.setImageResource(R.drawable.falco);setpersonaje.setValue("falco")}
-            24 ->{ imgPersonajeActual.setImageResource(R.drawable.wolf);setpersonaje.setValue("wolf")}
+            19 ->{ imgPersonajeActual.setImageResource(R.drawable.hyrulelink)}
+            20 ->{ imgPersonajeActual.setImageResource(R.drawable.zelda)}
+            21 ->{ imgPersonajeActual.setImageResource(R.drawable.ganondorf)}
+            22 ->{ imgPersonajeActual.setImageResource(R.drawable.foxmcloud)}
+            23 ->{ imgPersonajeActual.setImageResource(R.drawable.falco)}
+            24 ->{ imgPersonajeActual.setImageResource(R.drawable.wolf)}
 
         }
+        setpersonaje.setValue(personajeNumber)
 
         //Llamada a la función de generar tablero, la cual nos generará un tablero de forma aleatoria
         generarTablero(numTableroRand)
@@ -640,8 +863,11 @@ class TableroOnline : AppCompatActivity() {
     private fun preguntarPersonaje1(personaje : String){
         personajeRef1.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                Log.d("pp1: ",snapshot.value.toString())
-                if(snapshot.value.toString().contains(personaje)) {
+                val pers = snapshot.value.toString()
+                val persi = pers.toInt()
+                val temp = listaPersonaje[persi-1]
+                Log.d("pp1",temp.name)
+                if(temp.name == personaje) {
                     Toast.makeText(this@TableroOnline,
                         "Si es $personaje", Toast.LENGTH_SHORT).show()
                 }else{
@@ -657,13 +883,136 @@ class TableroOnline : AppCompatActivity() {
     private fun preguntarPersonaje2(personaje:String){
         personajeRef2.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                Log.d("pp2: ",snapshot.value.toString())
-                if(snapshot.value.toString().contains(personaje)) {
+                val pers = snapshot.value.toString()
+                val persi = pers.toInt()
+                val temp = listaPersonaje[persi-1]
+                Log.d("pp2",temp.name)
+                if(temp.name == personaje) {
                     Toast.makeText(this@TableroOnline,
                         "Si es $personaje", Toast.LENGTH_SHORT).show()
                 }else{
                     Toast.makeText(this@TableroOnline,
                         "No es $personaje", Toast.LENGTH_SHORT).show()
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
+    }
+    private fun preguntarPersonajeCombate1(combate: Int){
+        personajeRef1.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val pers = snapshot.value.toString()
+                val persi = pers.toInt()
+                val temp = listaPersonaje[persi-1]
+                if(temp.combate == combate){
+                    Toast.makeText(this@TableroOnline,
+                        "Si combate con $tempstring", Toast.LENGTH_SHORT).show()
+                }else{
+                    Toast.makeText(this@TableroOnline,
+                        "No combate con $tempstring", Toast.LENGTH_SHORT).show()
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
+    }
+    private fun preguntarPersonajeCombate2(combate: Int){
+        personajeRef2.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val pers = snapshot.value.toString()
+                val persi = pers.toInt()
+                val temp = listaPersonaje[persi-1]
+                if(temp.combate == combate){
+                    Toast.makeText(this@TableroOnline,
+                        "Si combate con $tempstring", Toast.LENGTH_SHORT).show()
+                }else{
+                    Toast.makeText(this@TableroOnline,
+                        "No combate con $tempstring", Toast.LENGTH_SHORT).show()
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
+    }
+    private fun preguntarPersonajeFranq1(franq: Int){
+        personajeRef1.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val pers = snapshot.value.toString()
+                val persi = pers.toInt()
+                val temp = listaPersonaje[persi-1]
+                if(temp.franquicia == franq){
+                    Toast.makeText(this@TableroOnline,
+                        "Si es de la franquicia $tempstring", Toast.LENGTH_SHORT).show()
+                }else{
+                    Toast.makeText(this@TableroOnline,
+                        "No es de la franquicia $tempstring", Toast.LENGTH_SHORT).show()
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
+    }
+    private fun preguntarPersonajeFranq2(franq: Int){
+        personajeRef2.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val pers = snapshot.value.toString()
+                val persi = pers.toInt()
+                val temp = listaPersonaje[persi-1]
+                if(temp.franquicia == franq){
+                    Toast.makeText(this@TableroOnline,
+                        "Si es de la franquicia $tempstring", Toast.LENGTH_SHORT).show()
+                }else{
+                    Toast.makeText(this@TableroOnline,
+                        "No es de la franquicia $tempstring", Toast.LENGTH_SHORT).show()
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
+    }
+    private fun preguntarPersonajeTamano1(tam: Int){
+        personajeRef1.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val pers = snapshot.value.toString()
+                val persi = pers.toInt()
+                val temp = listaPersonaje[persi-1]
+                if(temp.tamano == tam){
+                    Toast.makeText(this@TableroOnline,
+                        "Si es de tamaño $tempstring", Toast.LENGTH_SHORT).show()
+                }else{
+                    Toast.makeText(this@TableroOnline,
+                        "No es de tamaño $tempstring", Toast.LENGTH_SHORT).show()
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
+    }
+    private fun preguntarPersonajeTamano2(tam: Int){
+        personajeRef2.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val pers = snapshot.value.toString()
+                val persi = pers.toInt()
+                val temp = listaPersonaje[persi-1]
+                if(temp.tamano == tam){
+                    Toast.makeText(this@TableroOnline,
+                        "Si es de tamaño $tempstring", Toast.LENGTH_SHORT).show()
+                }else{
+                    Toast.makeText(this@TableroOnline,
+                        "No es de tamaño $tempstring", Toast.LENGTH_SHORT).show()
                 }
             }
             override fun onCancelled(error: DatabaseError) {

@@ -1,11 +1,8 @@
 package mx.uaa.mafl.projecttest
 
-import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -14,14 +11,9 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
-import com.google.firebase.database.ktx.getValue
-import com.google.firebase.firestore.FirebaseFirestore
+
 import com.google.firebase.ktx.Firebase
 
-
-enum class ProviderType {
-    BASIC
-}
 class HomeActivity :AppCompatActivity() {
     private lateinit var logOut : Button
     private lateinit var listView : ListView

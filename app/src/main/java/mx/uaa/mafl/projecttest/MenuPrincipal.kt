@@ -3,16 +3,13 @@ package mx.uaa.mafl.projecttest
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.util.Log
 import android.widget.Button
 import android.widget.Toast
 
 /*Código que nos muestra el menú principal, nos dirije a las actividades de:
 * Guía de juego
 * Juego contra un jugador
-* Juego contra Cpmputadora*/
+* Juego contra Computadora*/
 
 class MenuPrincipal : AppCompatActivity() {
 
@@ -21,10 +18,11 @@ class MenuPrincipal : AppCompatActivity() {
     private lateinit var btnJVJ : Button
     private lateinit var btnJVC : Button
     private lateinit var btnGuia : Button
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.layout_menu_principal)
-
+        //personajeApp = this as PersonajeApp
         //Definición de recursos y variables
         btnJVJ = findViewById(R.id.btnPVP)
         btnJVC = findViewById(R.id.btnPVC)
@@ -50,6 +48,7 @@ class MenuPrincipal : AppCompatActivity() {
             startActivity(intent)
         }
         //Agregar funcionalidad al botón de jugador contra jugador
+
     }
 
     /*Botón atrás, se ocupan dos clics para salir*/
@@ -58,4 +57,7 @@ class MenuPrincipal : AppCompatActivity() {
         else{ Toast.makeText(this, "Presiona atrás otra vez para salir", Toast.LENGTH_LONG).show() }
         backPressedTime = System.currentTimeMillis()
     }
+
+
+
 }
