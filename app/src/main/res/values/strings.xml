@@ -42,4 +42,8 @@
     <string name="lul_hnt01">Email</string>
     <string name="lul_hnt02">Contraseña</string>
     <string name="lul_btn01">Iniciar Sesión</string>
+    <string name="nombre_de_usuario">Nombre de Usuario</string>
+    <string name="crea_tu_nombre_de_usuario">Crea tu nombre de usuario</string>
+    <string name="username">UserName</string>
+    <string name="continuar">Continuar</string>
 </resources>

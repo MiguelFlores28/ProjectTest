@@ -8,15 +8,15 @@
     android:background="#D5D5D5">
 
     <RelativeLayout
-        android:background="@drawable/rounded_corners_layout"
+        android:layout_width="320dp"
+        android:layout_height="250dp"
         android:layout_margin="5dp"
+        android:background="@drawable/rounded_corners_layout"
         android:padding="10dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_width="300dp"
-        android:layout_height="400dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/txt1"
@@ -24,36 +24,28 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:paddingBottom="30dp"
-            android:text="@string/lul_str01"
+            android:text="@string/crea_tu_nombre_de_usuario"
             android:textColor="#000000"
             android:textSize="25sp"
             android:textStyle="italic" />
-        <TextView android:id="@+id/txt2"
+
+        <TextView
+            android:id="@+id/txt2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/lul_str02"
             android:layout_below="@id/txt1"
             android:paddingBottom="20dp"
+            android:text="@string/nombre_de_usuario"
             android:textColor="#000000"
-            android:textSize="15sp"
-            />
+            android:textSize="15sp" />
 
         <EditText
             android:id="@+id/textUsername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/txt2"
-            android:hint="@string/lul_hnt01"
-            android:inputType="textEmailAddress"
-            android:paddingBottom="20dp" />
-
-        <EditText
-            android:id="@+id/textPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/textUsername"
-            android:hint="@string/lul_hnt02"
-            android:inputType="textPassword"
+            android:hint="@string/username"
+            android:inputType="text"
             android:paddingBottom="20dp" />
 
         <Button
@@ -61,18 +53,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignWithParentIfMissing="false"
-            android:layout_below="@id/textPassword"
-            android:layout_toEndOf="@id/botonRegistra"
+            android:layout_below="@id/textUsername"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="2dp"
             android:backgroundTint="#E53935"
             android:gravity="center"
-            android:text="@string/lul_btn01" />
-
-        <Button
-            android:id="@+id/botonRegistra"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/textPassword"
-            android:text="Registrar" />
+            android:text="@string/continuar" />
 
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

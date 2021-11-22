@@ -29,7 +29,7 @@ class HomeActivity :AppCompatActivity() {
         setContentView(R.layout.activity_home)
         // Setup
         //Recuperamos las variables de Preferences con su widgetId unico
-        val prefs = this.getSharedPreferences("WidgetPrefs", Context.MODE_PRIVATE)
+        val prefs = this.getSharedPreferences("ProyectoPrefs", Context.MODE_PRIVATE)
         val uid = prefs.getString("uid", "")
         banduid = uid.toString()
         setup(uid ?: "")
