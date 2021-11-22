@@ -1,10 +1,12 @@
 package mx.uaa.mafl.projecttest
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
@@ -33,6 +35,5 @@ class NombreUser : AppCompatActivity()  {
             }
         }
     }
-
 
 }

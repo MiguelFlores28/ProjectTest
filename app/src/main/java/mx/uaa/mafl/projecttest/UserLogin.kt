@@ -1,5 +1,6 @@
 package mx.uaa.mafl.projecttest
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,10 +11,9 @@ import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
@@ -28,6 +28,11 @@ class UserLogin : AppCompatActivity() {
     private var emailRef = database.reference
     private lateinit var homeIntent : Intent
     private var username = ""
+    var user: FirebaseUser? = null
+    var db: FirebaseDatabase? = null
+    var usersListRef: DatabaseReference? = null
+    var connectedRef: DatabaseReference? = null
+    var onlineStatus: DatabaseReference? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         // Splash
         Thread.sleep(2000)
@@ -93,15 +98,13 @@ class UserLogin : AppCompatActivity() {
         val editor = prefs.edit()
         editor.putString("uid", uid)
         editor.putString("email", email)
-
+        db = FirebaseDatabase.getInstance()
         emailRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                Log.d("snapshotvalue", snapshot.value.toString())
                 if(snapshot.value.toString() == "null") {
                     homeIntent = Intent(this@UserLogin, NombreUser::class.java).apply {
                     }
                 } else {
-                    Log.d("elsebandfalse", "entro a else")
                     username = snapshot.value.toString()
                     homeIntent = Intent(this@UserLogin, MenuPrincipal::class.java).apply {
                         editor.putString("username", username)
@@ -116,4 +119,5 @@ class UserLogin : AppCompatActivity() {
             }
         })
     }
+
 }

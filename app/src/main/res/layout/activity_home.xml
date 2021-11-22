@@ -19,7 +19,7 @@
         android:layout_above="@id/botonLogOut"
         android:layout_alignParentBottom="false"
         android:layout_centerHorizontal="true"
-        android:text="CREATE ROOM" />
+        android:text="CREAR SALA" />
 
     <Button
         android:id="@+id/botonLogOut"

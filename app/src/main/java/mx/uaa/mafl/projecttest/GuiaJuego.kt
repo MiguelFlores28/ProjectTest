@@ -1,9 +1,11 @@
 package mx.uaa.mafl.projecttest
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import com.google.firebase.database.FirebaseDatabase
 
 /*Código que nos muestra la guiía del juego*/
 
@@ -17,6 +19,7 @@ class GuiaJuego : AppCompatActivity() {
 
         /*Botón para regresar al menú principal*/
         btn = findViewById(R.id.btnRegresoInicio)
+
         val extras = intent.extras
         if(extras != null) {
             bandera = extras.getString("band").toString()
@@ -29,5 +32,14 @@ class GuiaJuego : AppCompatActivity() {
                 startActivity(Intent(this, HomeActivity::class.java))
             }
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        val database = FirebaseDatabase.getInstance()
+        val prefs = this.getSharedPreferences("ProyectoPrefs", Context.MODE_PRIVATE)
+        val uid = prefs.getString("uid", "")
+        val conectRef = database.getReference("users/$uid/status")
+        conectRef.setValue("Offline")
     }
 }

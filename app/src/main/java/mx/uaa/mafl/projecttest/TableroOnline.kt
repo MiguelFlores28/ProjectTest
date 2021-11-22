@@ -1,5 +1,6 @@
 package mx.uaa.mafl.projecttest
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -98,6 +99,8 @@ class TableroOnline : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.layout_tablero)
+        val prefs = this.getSharedPreferences("ProyectoPrefs", Context.MODE_PRIVATE)
+        val username = prefs.getString("username","")
         //Definición de variables y recursos, recuperación del personaje desde la actividad CharSelect
         personajeNumber = (1..24).random()
         numTableroRand = (1..4).random()
@@ -107,8 +110,7 @@ class TableroOnline : AppCompatActivity() {
         val extras = intent.extras
         if(extras != null) {
             roomName = extras.getString("roomName").toString()
-            uid = extras.get("uid").toString()
-            if(roomName == uid){
+            if(roomName == username){
                 role = "host"
             }else {
                 role = "guest"
@@ -151,7 +153,7 @@ class TableroOnline : AppCompatActivity() {
         listaPersonaje.add(Personaje(18, "ike", 6, 3, 3))
         listaPersonaje.add(Personaje(19, "link", 7, 2, 3))
         listaPersonaje.add(Personaje(20, "zelda", 7, 2, 2))
-        listaPersonaje.add(Personaje(21, "ganondorf", 7, 3, 1))
+        listaPersonaje.add(Personaje(21, "ganondorf", 7, 4, 1))
         listaPersonaje.add(Personaje(22, "fox", 8, 2, 1))
         listaPersonaje.add(Personaje(23, "falco", 8, 2, 2))
         listaPersonaje.add(Personaje(24, "wolf", 8, 2, 1))
@@ -1021,4 +1023,12 @@ class TableroOnline : AppCompatActivity() {
 
         })
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        val database = FirebaseDatabase.getInstance()
+        val conectRef = database.getReference("room/$roomName")
+        conectRef.removeValue()
+    }
+
 }

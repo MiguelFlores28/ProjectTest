@@ -40,6 +40,9 @@
             android:name=".NombreUser"
             android:exported="false"
             android:noHistory="true" />
+        <activity android:name=".OnlineUserActivity"
+            android:exported="false"
+            android:noHistory="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
