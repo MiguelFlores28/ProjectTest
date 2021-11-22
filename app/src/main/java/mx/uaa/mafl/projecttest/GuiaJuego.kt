@@ -34,12 +34,4 @@ class GuiaJuego : AppCompatActivity() {
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        val database = FirebaseDatabase.getInstance()
-        val prefs = this.getSharedPreferences("ProyectoPrefs", Context.MODE_PRIVATE)
-        val uid = prefs.getString("uid", "")
-        val conectRef = database.getReference("users/$uid/status")
-        conectRef.setValue("Offline")
-    }
 }
