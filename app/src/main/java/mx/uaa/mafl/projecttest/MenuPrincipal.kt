@@ -9,6 +9,8 @@ import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 
 /*Código que nos muestra el menú principal, nos dirije a las actividades de:
 * Guía de juego
@@ -23,9 +25,7 @@ class MenuPrincipal : AppCompatActivity() {
     private lateinit var btnJVC : Button
     private lateinit var btnGuia : Button
     private lateinit  var btnOnline : Button
-    var user: FirebaseUser? = null
     var db: FirebaseDatabase? = null
-    var usersListRef: DatabaseReference? = null
     var connectedRef: DatabaseReference? = null
     var onlineStatus: DatabaseReference? = null
     var username = ""

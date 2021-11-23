@@ -3,12 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/danif/AndroidStudioProjects/ProjectTest/app/src/main/res/layout/activity_final.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/danif/AndroidStudioProjects/ProjectTest/app/src/main/res/layout/activity_game.xml" value="0.1" />
         <entry key="..\:/Users/danif/AndroidStudioProjects/ProjectTest/app/src/main/res/layout/activity_home.xml" value="0.13125" />
         <entry key="..\:/Users/danif/AndroidStudioProjects/ProjectTest/app/src/main/res/layout/activity_online_user.xml" value="0.16979166666666667" />
         <entry key="..\:/Users/danif/AndroidStudioProjects/ProjectTest/app/src/main/res/layout/activity_user_name.xml" value="0.24818840579710144" />
+        <entry key="..\:/Users/danif/AndroidStudioProjects/ProjectTest/app/src/main/res/layout/layout_char_select.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/danif/AndroidStudioProjects/ProjectTest/app/src/main/res/layout/layout_menu_principal.xml" value="0.2" />
-        <entry key="..\:/Users/danif/AndroidStudioProjects/ProjectTest/app/src/main/res/layout/layout_tablero.xml" value="0.22994900324524803" />
+        <entry key="..\:/Users/danif/AndroidStudioProjects/ProjectTest/app/src/main/res/layout/layout_tablero.xml" value="0.264" />
         <entry key="..\:/Users/danif/AndroidStudioProjects/ProjectTest/app/src/main/res/layout/layout_user_login.xml" value="0.264" />
         <entry key="..\:/Users/danif/AndroidStudioProjects/ProjectTest/app/src/main/res/layout/recview_content.xml" value="0.4" />
         <entry key="..\:/Users/gilbe/AndroidStudioProjects/ProjectTest/app/src/main/res/layout/activity_main.xml" value="0.13020833333333334" />

@@ -33,6 +33,10 @@
             android:exported="false"
             android:noHistory="true" />
         <activity
+            android:name=".FinalOnline"
+            android:exported="false"
+            android:noHistory="true" />
+        <activity
             android:name=".HomeActivity"
             android:exported="false"
             android:noHistory="true" />

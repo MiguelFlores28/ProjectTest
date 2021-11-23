@@ -14,6 +14,8 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 
 import com.google.firebase.ktx.Firebase
+import java.util.*
+import kotlin.collections.ArrayList
 
 class HomeActivity :AppCompatActivity() {
     private lateinit var logOut : Button
@@ -26,6 +28,7 @@ class HomeActivity :AppCompatActivity() {
     private var roomName = ""
     private var banduid = ""
     private var conectado = ""
+    private lateinit var eventListener : ValueEventListener
     var roomsList : ArrayList<String> = arrayListOf()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,12 +56,14 @@ class HomeActivity :AppCompatActivity() {
             roomRef = database.getReference("rooms/$roomName/player1")
             addRoomEventListener()
             roomRef.setValue(username)
+            finish()
         }
         listView.setOnItemClickListener{ _, _, position, _ ->
             roomName = roomsList[position]
             roomRef = database.getReference("rooms/$roomName/player2")
             addRoomEventListener()
             roomRef.setValue(username)
+            finish()
         }
 
         logOut.setOnClickListener{
@@ -71,7 +76,7 @@ class HomeActivity :AppCompatActivity() {
     }
 
     private fun addRoomEventListener() {
-        roomRef.addValueEventListener(object : ValueEventListener {
+        roomRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 crear.text = "CREAR SALA"
                 crear.isEnabled = true
@@ -80,6 +85,7 @@ class HomeActivity :AppCompatActivity() {
                     putExtra("uid",banduid)
                 }
                 startActivity(intent)
+                finish()
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -92,7 +98,7 @@ class HomeActivity :AppCompatActivity() {
 
     private fun addRoomsEventListener() {
         roomsRef = database.getReference("rooms")
-        roomsRef.addValueEventListener(object : ValueEventListener {
+        eventListener = roomsRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 roomsList.clear()
                 val rooms = dataSnapshot.children
@@ -103,7 +109,6 @@ class HomeActivity :AppCompatActivity() {
                     listView.adapter = adapter
                 }
             }
-
             override fun onCancelled(error: DatabaseError) {
                 crear.text = "CREAR SALA"
                 crear.isEnabled = true
@@ -112,6 +117,10 @@ class HomeActivity :AppCompatActivity() {
         })
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        roomRef.removeEventListener(eventListener)
+    }
 }
 
 

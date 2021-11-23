@@ -1,6 +1,7 @@
 package mx.uaa.mafl.projecttest
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -15,6 +16,8 @@ import com.google.firebase.ktx.Firebase
 class TableroOnline : AppCompatActivity() {
 
     //Definición de variables y recursos
+    private lateinit var user1 : TextView
+    private lateinit var user2 : TextView
     private lateinit var botonTamano1 : Button
     private lateinit var botonTamano2 : Button
     private lateinit var botonTamano3 : Button
@@ -86,6 +89,9 @@ class TableroOnline : AppCompatActivity() {
     private var personajeRef1 = database.reference
     private var personajeRef2 = database.reference
     private var setpersonaje = database.reference
+    private var setplayer = database.reference
+    private var personajeRef = database.reference
+    private var tempRef = database.reference
     private lateinit var botonPrueba : Button
     private var roomName = ""
     private var uid = ""
@@ -94,25 +100,38 @@ class TableroOnline : AppCompatActivity() {
     private var band = 0
     private var personajeNumber = 0
     private var numTableroRand = 0
+    private var username = ""
+    private var deleteRoomRef = database.reference
     var listaPersonaje  = arrayListOf<Personaje>()
     private var tempstring = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.layout_tablero)
         val prefs = this.getSharedPreferences("ProyectoPrefs", Context.MODE_PRIVATE)
-        val username = prefs.getString("username","")
+
+        username = prefs.getString("username","").toString()
         //Definición de variables y recursos, recuperación del personaje desde la actividad CharSelect
         personajeNumber = (1..24).random()
         numTableroRand = (1..4).random()
         imgPersonajeActual = findViewById(R.id.imgChrctrGame)
         database = FirebaseDatabase.getInstance()
         button = findViewById(R.id.btnEnviarMsj)
+        user1 = findViewById(R.id.user1)
+        user2 = findViewById(R.id.user2)
         val extras = intent.extras
         if(extras != null) {
             roomName = extras.getString("roomName").toString()
+            uid = extras.get("uid").toString()
             if(roomName == username){
+                personajeRef = database.getReference("rooms/$roomName/player2personaje")
+                setplayer = database.getReference("rooms/$roomName/player2")
+                user1.text = roomName
                 role = "host"
+                addUserText()
             }else {
+                personajeRef = database.getReference("rooms/$roomName/player1personaje")
+                user1.text = roomName
+                user2.text = username
                 role = "guest"
             }
         }
@@ -131,6 +150,18 @@ class TableroOnline : AppCompatActivity() {
         personajeRef1 = database.getReference("rooms/$roomName/player1personaje")
         personajeRef2 = database.getReference("rooms/$roomName/player2personaje")
         addRoomEventListener()
+    }
+    private fun setupName(text :String){
+        user2.text = text
+    }
+    private fun addUserText(){
+        setplayer.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                setupName(snapshot.value.toString())
+            }
+            override fun onCancelled(error: DatabaseError) {
+            }
+    })
     }
     private fun setupArrayList(){
         listaPersonaje.add(Personaje(1, "mario", 1, 2, 1))
@@ -151,7 +182,7 @@ class TableroOnline : AppCompatActivity() {
         listaPersonaje.add(Personaje(16, "lucina", 6, 2, 3))
         listaPersonaje.add(Personaje(17, "roy", 6, 2, 3))
         listaPersonaje.add(Personaje(18, "ike", 6, 3, 3))
-        listaPersonaje.add(Personaje(19, "link", 7, 2, 3))
+        listaPersonaje.add(Personaje(19, "link", 7, 3, 3))
         listaPersonaje.add(Personaje(20, "zelda", 7, 2, 2))
         listaPersonaje.add(Personaje(21, "ganondorf", 7, 4, 1))
         listaPersonaje.add(Personaje(22, "fox", 8, 2, 1))
@@ -835,6 +866,51 @@ class TableroOnline : AppCompatActivity() {
 
         }
     }
+    private fun partidaEnd(){
+        personajeRef.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                Log.d("idrival",snapshot.value.toString())
+                tempRef.child("temp").child(username).child("idrival").setValue(snapshot.value.toString().toInt())
+            }
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+        })
+        messageRef.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                var txt = ""
+                if(snapshot.value.toString().contains("1")) {
+                    if(username == roomName){
+                        txt = "¡¡GANASTE!!"
+                    }else{
+                        txt = "¡¡PERDISTE!!"
+                    }
+                } else {
+                    if(username == roomName){
+                        txt = "¡¡PERDISTE!!"
+                    }else{
+                        txt = "¡¡GANASTE!!"
+                    }
+                }
+                tempRef.child("temp").child(username).child("texto").setValue(txt)
+            }
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+        })
+        val intent = Intent(this@TableroOnline, FinalOnline::class.java).apply {
+            putExtra("roomName", roomName)
+            putExtra("uid", uid)
+            putExtra("visita", "online")
+            putExtra("rival", user2.text.toString())
+        }
+        Log.d("roomName",roomName)
+        startActivity(intent)
+        finish()
+    }
+
     private fun addRoomEventListener() {
         messageRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -842,17 +918,25 @@ class TableroOnline : AppCompatActivity() {
                     if(snapshot.value.toString().contains("guest:")) {
                         button.isEnabled = true
                         enableButtons()
+                        snapshot.value.toString().replace("guest:","")
                         Toast.makeText(this@TableroOnline,
-                            "" + snapshot.value.toString().replace("guest:",""), Toast.LENGTH_SHORT).show()
+                            "Tu turno!", Toast.LENGTH_SHORT).show()
                         band = 0
+                    }else if(snapshot.value.toString().contains("ganar")) {
+                        messageRef.removeEventListener(this)
+                        partidaEnd()
                     }
                 } else {
                     if(snapshot.value.toString().contains("host:")) {
                         button.isEnabled = true
                         enableButtons()
+                        snapshot.value.toString().replace("host:","")
                         Toast.makeText(this@TableroOnline,
-                            "" + snapshot.value.toString().replace("host:",""), Toast.LENGTH_SHORT).show()
+                            "Tu turno!", Toast.LENGTH_SHORT).show()
                         band = 1
+                    }else if(snapshot.value.toString().contains("ganar")) {
+                        messageRef.removeEventListener(this)
+                        partidaEnd()
                     }
                 }
             }
@@ -870,8 +954,7 @@ class TableroOnline : AppCompatActivity() {
                 val temp = listaPersonaje[persi-1]
                 Log.d("pp1",temp.name)
                 if(temp.name == personaje) {
-                    Toast.makeText(this@TableroOnline,
-                        "Si es $personaje", Toast.LENGTH_SHORT).show()
+                    messageRef.setValue("ganar2")
                 }else{
                     Toast.makeText(this@TableroOnline,
                         "No es $personaje", Toast.LENGTH_SHORT).show()
@@ -890,8 +973,7 @@ class TableroOnline : AppCompatActivity() {
                 val temp = listaPersonaje[persi-1]
                 Log.d("pp2",temp.name)
                 if(temp.name == personaje) {
-                    Toast.makeText(this@TableroOnline,
-                        "Si es $personaje", Toast.LENGTH_SHORT).show()
+                    messageRef.setValue("ganar1")
                 }else{
                     Toast.makeText(this@TableroOnline,
                         "No es $personaje", Toast.LENGTH_SHORT).show()
@@ -1024,11 +1106,17 @@ class TableroOnline : AppCompatActivity() {
         })
     }
 
-    override fun onDestroy() {
+    /*override fun onDestroy() {
         super.onDestroy()
-        val database = FirebaseDatabase.getInstance()
-        val conectRef = database.getReference("room/$roomName")
-        conectRef.removeValue()
+        if(roomName == username) {
+            deleteRoomRef = database.getReference("rooms/$username")
+            deleteRoomRef.removeValue()
+        }
     }
 
+    override fun onPause() {
+        super.onPause()
+            deleteRoomRef = database.getReference("rooms/$username")
+            deleteRoomRef.removeValue()
+    }*/
 }
