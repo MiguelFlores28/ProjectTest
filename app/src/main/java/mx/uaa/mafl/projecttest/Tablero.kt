@@ -1,6 +1,7 @@
 package mx.uaa.mafl.projecttest
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -549,12 +550,17 @@ class Tablero : AppCompatActivity() {
 
             }
         }
+    private fun partidaEnd(){
+        val intent = Intent(this@Tablero, FinalOnline::class.java).apply {
+            putExtra("personaje",personajeNumber)
+        }
+        startActivity(intent)
+    }
     private fun preguntarPersonaje1(personaje : String){
                 val temp = listaPersonaje[personajeNumber-1]
                 Log.d("pp1",temp.name)
                 if(temp.name == personaje) {
-                    Toast.makeText(this@Tablero,
-                        "Si es $personaje", Toast.LENGTH_SHORT).show()
+                    partidaEnd()
                 }else{
                     Toast.makeText(this@Tablero,
                         "No es $personaje", Toast.LENGTH_SHORT).show()

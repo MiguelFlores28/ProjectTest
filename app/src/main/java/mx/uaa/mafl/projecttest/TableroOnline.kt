@@ -101,14 +101,14 @@ class TableroOnline : AppCompatActivity() {
     private var personajeNumber = 0
     private var numTableroRand = 0
     private var username = ""
-    private var deleteRoomRef = database.reference
+    private var mensajeRef = database.reference
     var listaPersonaje  = arrayListOf<Personaje>()
     private var tempstring = ""
+    private lateinit var eventListener : ValueEventListener
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.layout_tablero)
         val prefs = this.getSharedPreferences("ProyectoPrefs", Context.MODE_PRIVATE)
-
         username = prefs.getString("username","").toString()
         //Definición de variables y recursos, recuperación del personaje desde la actividad CharSelect
         personajeNumber = (1..24).random()
@@ -155,7 +155,7 @@ class TableroOnline : AppCompatActivity() {
         user2.text = text
     }
     private fun addUserText(){
-        setplayer.addValueEventListener(object : ValueEventListener {
+        eventListener = setplayer.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 setupName(snapshot.value.toString())
             }
@@ -907,6 +907,8 @@ class TableroOnline : AppCompatActivity() {
             putExtra("rival", user2.text.toString())
         }
         Log.d("roomName",roomName)
+        if(roomName==username)
+            setplayer.removeEventListener(eventListener)
         startActivity(intent)
         finish()
     }
@@ -986,17 +988,24 @@ class TableroOnline : AppCompatActivity() {
         })
     }
     private fun preguntarPersonajeCombate1(combate: Int){
+        mensajeRef = database.getReference("chat/$username")
         personajeRef1.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
+                val band1 = mensajeRef.push().key
+                mensajeRef = database.getReference("chat/$username/$band1")
                 val pers = snapshot.value.toString()
                 val persi = pers.toInt()
                 val temp = listaPersonaje[persi-1]
                 if(temp.combate == combate){
                     Toast.makeText(this@TableroOnline,
                         "Si combate con $tempstring", Toast.LENGTH_SHORT).show()
+                    mensajeRef.child("mensaje").setValue("Si combate con $tempstring")
+                    mensajeRef.child("destino").setValue(roomName)
                 }else{
                     Toast.makeText(this@TableroOnline,
                         "No combate con $tempstring", Toast.LENGTH_SHORT).show()
+                    mensajeRef.child("mensaje").setValue("No combate con $tempstring")
+                    mensajeRef.child("destino").setValue(roomName)
                 }
             }
             override fun onCancelled(error: DatabaseError) {
@@ -1006,17 +1015,24 @@ class TableroOnline : AppCompatActivity() {
         })
     }
     private fun preguntarPersonajeCombate2(combate: Int){
+        mensajeRef = database.getReference("chat/$uid")
         personajeRef2.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
+                val band1 = mensajeRef.push().key
+                mensajeRef = database.getReference("chat/$uid/$band1")
                 val pers = snapshot.value.toString()
                 val persi = pers.toInt()
                 val temp = listaPersonaje[persi-1]
                 if(temp.combate == combate){
                     Toast.makeText(this@TableroOnline,
                         "Si combate con $tempstring", Toast.LENGTH_SHORT).show()
+                    mensajeRef.child("mensaje").setValue("Si combate con $tempstring")
+                    mensajeRef.child("destino").setValue(user2.text)
                 }else{
                     Toast.makeText(this@TableroOnline,
                         "No combate con $tempstring", Toast.LENGTH_SHORT).show()
+                    mensajeRef.child("mensaje").setValue("No combate con $tempstring")
+                    mensajeRef.child("destino").setValue(user2.text)
                 }
             }
             override fun onCancelled(error: DatabaseError) {
@@ -1026,17 +1042,24 @@ class TableroOnline : AppCompatActivity() {
         })
     }
     private fun preguntarPersonajeFranq1(franq: Int){
+        mensajeRef = database.getReference("chat/$username")
         personajeRef1.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
+                val band1 = mensajeRef.push().key
+                mensajeRef = database.getReference("chat/$username/$band1")
                 val pers = snapshot.value.toString()
                 val persi = pers.toInt()
                 val temp = listaPersonaje[persi-1]
                 if(temp.franquicia == franq){
                     Toast.makeText(this@TableroOnline,
                         "Si es de la franquicia $tempstring", Toast.LENGTH_SHORT).show()
+                    mensajeRef.child("mensaje").setValue("Si es de la franquicia $tempstring")
+                    mensajeRef.child("destino").setValue(roomName)
                 }else{
                     Toast.makeText(this@TableroOnline,
                         "No es de la franquicia $tempstring", Toast.LENGTH_SHORT).show()
+                    mensajeRef.child("mensaje").setValue("Si es de la franquicia $tempstring")
+                    mensajeRef.child("destino").setValue(roomName)
                 }
             }
             override fun onCancelled(error: DatabaseError) {
@@ -1046,17 +1069,24 @@ class TableroOnline : AppCompatActivity() {
         })
     }
     private fun preguntarPersonajeFranq2(franq: Int){
+        mensajeRef = database.getReference("chat/$uid")
         personajeRef2.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
+                val band1 = mensajeRef.push().key
+                mensajeRef = database.getReference("chat/$uid/$band1")
                 val pers = snapshot.value.toString()
                 val persi = pers.toInt()
                 val temp = listaPersonaje[persi-1]
                 if(temp.franquicia == franq){
                     Toast.makeText(this@TableroOnline,
                         "Si es de la franquicia $tempstring", Toast.LENGTH_SHORT).show()
+                    mensajeRef.child("mensaje").setValue("Si es de la franquicia $tempstring")
+                    mensajeRef.child("destino").setValue(user2.text)
                 }else{
                     Toast.makeText(this@TableroOnline,
                         "No es de la franquicia $tempstring", Toast.LENGTH_SHORT).show()
+                    mensajeRef.child("mensaje").setValue("No es de la franquicia $tempstring")
+                    mensajeRef.child("destino").setValue(user2.text)
                 }
             }
             override fun onCancelled(error: DatabaseError) {
@@ -1066,17 +1096,24 @@ class TableroOnline : AppCompatActivity() {
         })
     }
     private fun preguntarPersonajeTamano1(tam: Int){
+        mensajeRef = database.getReference("chat/$username")
         personajeRef1.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
+                val band1 = mensajeRef.push().key
+                mensajeRef = database.getReference("chat/$username/$band1")
                 val pers = snapshot.value.toString()
                 val persi = pers.toInt()
                 val temp = listaPersonaje[persi-1]
                 if(temp.tamano == tam){
                     Toast.makeText(this@TableroOnline,
                         "Si es de tamaño $tempstring", Toast.LENGTH_SHORT).show()
+                    mensajeRef.child("mensaje").setValue("Si es de tamaño $tempstring")
+                    mensajeRef.child("destino").setValue(roomName)
                 }else{
                     Toast.makeText(this@TableroOnline,
                         "No es de tamaño $tempstring", Toast.LENGTH_SHORT).show()
+                    mensajeRef.child("mensaje").setValue("No es de tamaño $tempstring")
+                    mensajeRef.child("destino").setValue(roomName)
                 }
             }
             override fun onCancelled(error: DatabaseError) {
@@ -1086,17 +1123,24 @@ class TableroOnline : AppCompatActivity() {
         })
     }
     private fun preguntarPersonajeTamano2(tam: Int){
+        mensajeRef = database.getReference("chat/$username")
         personajeRef2.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
+                val band1 = mensajeRef.push().key
+                mensajeRef = database.getReference("chat/$username/$band1")
                 val pers = snapshot.value.toString()
                 val persi = pers.toInt()
                 val temp = listaPersonaje[persi-1]
                 if(temp.tamano == tam){
                     Toast.makeText(this@TableroOnline,
                         "Si es de tamaño $tempstring", Toast.LENGTH_SHORT).show()
+                    mensajeRef.child("mensaje").setValue("Si es de tamaño $tempstring")
+                    mensajeRef.child("destino").setValue(user2.text)
                 }else{
                     Toast.makeText(this@TableroOnline,
                         "No es de tamaño $tempstring", Toast.LENGTH_SHORT).show()
+                    mensajeRef.child("mensaje").setValue("No es de tamaño $tempstring")
+                    mensajeRef.child("destino").setValue(user2.text)
                 }
             }
             override fun onCancelled(error: DatabaseError) {

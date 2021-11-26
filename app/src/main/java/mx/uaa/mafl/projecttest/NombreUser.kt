@@ -15,6 +15,8 @@ class NombreUser : AppCompatActivity()  {
     private lateinit var textUsername : EditText
     private var database = Firebase.database
     private var userRef = database.reference
+    private var updateLostRef = database.reference
+    private var updateWinRef = database.reference
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_name)
@@ -23,12 +25,16 @@ class NombreUser : AppCompatActivity()  {
         val prefs = getSharedPreferences("ProyectoPrefs", MODE_PRIVATE)
         val editor = prefs.edit()
         val uid = prefs.getString("uid","").toString()
+        updateWinRef = database.getReference("users/$uid/Wins")
+        updateLostRef = database.getReference("users/$uid/Losses")
         botonContinuar.setOnClickListener{
             if (textUsername.text.isNotEmpty()){
                 editor.putString("username",textUsername.text.toString())
                 editor.commit()
                 userRef = database.getReference("users/$uid/username")
                 userRef.setValue(textUsername.text.toString())
+                updateLostRef.setValue(0)
+                updateWinRef.setValue(0)
                 val homeIntent = Intent(this, MenuPrincipal::class.java).apply {
                 }
                 startActivity(homeIntent)

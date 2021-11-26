@@ -33,6 +33,14 @@
             android:exported="false"
             android:noHistory="true" />
         <activity
+            android:name=".HomeChat"
+            android:exported="false"
+            android:noHistory="true" />
+        <activity
+            android:name=".Chat"
+            android:exported="false"
+            android:noHistory="true" />
+        <activity
             android:name=".FinalOnline"
             android:exported="false"
             android:noHistory="true" />

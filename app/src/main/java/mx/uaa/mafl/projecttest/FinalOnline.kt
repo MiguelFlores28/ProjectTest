@@ -57,6 +57,7 @@ class FinalOnline : AppCompatActivity() {
                 band = 0
                 pers = extras.getInt("personaje")
                 setupImagenTexto(pers)
+                txtPos.text = "¡¡GANASTE!!"
             }
         }
         if (band == 1){
@@ -70,7 +71,7 @@ class FinalOnline : AppCompatActivity() {
             Toast.makeText(this,"TEXTO "+txtPos.text.toString(),Toast.LENGTH_LONG).show()
         }
         btnSiguiente.setOnClickListener{
-            deleteRoom()
+            if(band == 1) deleteRoom()
             startActivity(Intent(this, MenuPrincipal::class.java))
         }
     }

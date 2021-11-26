@@ -25,6 +25,7 @@ class MenuPrincipal : AppCompatActivity() {
     private lateinit var btnJVC : Button
     private lateinit var btnGuia : Button
     private lateinit  var btnOnline : Button
+    private lateinit  var btnMensaje : Button
     var db: FirebaseDatabase? = null
     var connectedRef: DatabaseReference? = null
     var onlineStatus: DatabaseReference? = null
@@ -42,12 +43,15 @@ class MenuPrincipal : AppCompatActivity() {
         btnJVC = findViewById(R.id.btnPVC)
         btnGuia = findViewById(R.id.btnGuia)
         btnOnline = findViewById(R.id.botonUsers)
+        btnMensaje = findViewById(R.id.botonMens)
         db = FirebaseDatabase.getInstance()
         //A la actividad del juego contra máquina
         btnJVC.setOnClickListener {
             startActivity(Intent(this, Tablero::class.java))
         }
-
+        btnMensaje.setOnClickListener{
+            startActivity(Intent(this, HomeChat::class.java))
+        }
         //A la actividad de guía
        btnGuia.setOnClickListener {
            val intent = Intent(this@MenuPrincipal, GuiaJuego::class.java).apply {
