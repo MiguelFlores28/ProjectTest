@@ -81,4 +81,9 @@ class HomeChat: AppCompatActivity() {
         super.onDestroy()
         roomRef.removeEventListener(eventListener)
     }
+    override fun onBackPressed() {
+        super.onBackPressed()
+        startActivity(Intent(this, MenuPrincipal::class.java))
+        finish()
+    }
 }

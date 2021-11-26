@@ -1,5 +1,6 @@
 package mx.uaa.mafl.projecttest
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.ArrayAdapter
@@ -24,6 +25,7 @@ class Chat : AppCompatActivity() {
     private lateinit var logOut : Button
     private lateinit var listView : ListView
     private var destino = ""
+    private var cont = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         database = FirebaseDatabase.getInstance()
@@ -69,7 +71,7 @@ class Chat : AppCompatActivity() {
                         }
                         if(i <= temporal2.size-1){
                             if(temporal2[i].child("destino").value == username){
-                                roomsList.add("$destino: "+temporal1[i].child("mensaje").value.toString())
+                                roomsList.add("$destino: "+temporal2[i].child("mensaje").value.toString())
                             }
                         }
                     }
@@ -81,7 +83,7 @@ class Chat : AppCompatActivity() {
                             }
                         if(i <= temporal2.size-1){
                             if(temporal2[i].child("destino").value == username){
-                                roomsList.add("$destino: "+temporal1[i].child("mensaje").value.toString())
+                                roomsList.add("$destino: "+temporal2[i].child("mensaje").value.toString())
                             }
                         }
                     }
@@ -94,5 +96,11 @@ class Chat : AppCompatActivity() {
                 Toast.makeText(this@Chat, "Error!", Toast.LENGTH_SHORT).show()
             }
         })
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        startActivity(Intent(this, HomeChat::class.java))
+        finish()
     }
 }

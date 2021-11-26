@@ -34,4 +34,9 @@ class GuiaJuego : AppCompatActivity() {
         }
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        startActivity(Intent(this, MenuPrincipal::class.java))
+        finish()
+    }
 }

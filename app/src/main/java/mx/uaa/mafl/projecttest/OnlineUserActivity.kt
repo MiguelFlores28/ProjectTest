@@ -1,10 +1,12 @@
 package mx.uaa.mafl.projecttest
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.ListView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -65,5 +67,11 @@ class OnlineUserActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         usersListRef!!.removeEventListener(userListValueEventListener!!)
+        Toast.makeText(this@OnlineUserActivity, "SI ENTRO AL DESTROY",Toast.LENGTH_LONG).show()
+    }
+    override fun onBackPressed() {
+        super.onBackPressed()
+        startActivity(Intent(this, MenuPrincipal::class.java))
+        finish()
     }
 }

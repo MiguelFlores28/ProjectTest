@@ -68,7 +68,6 @@ class FinalOnline : AppCompatActivity() {
             tempRef2 = database.getReference("temp/$username/texto")
             colocarPersonaje()
             colocarTexto()
-            Toast.makeText(this,"TEXTO "+txtPos.text.toString(),Toast.LENGTH_LONG).show()
         }
         btnSiguiente.setOnClickListener{
             if(band == 1) deleteRoom()
